@@ -1,0 +1,60 @@
+// Normalize Styles
+@import 'node_modules/normalize.css/normalize';
+
+// Import Modules
+@import '../_modules/link/link';
+@import '../_modules/atoms/frame/frame';
+
+@import '../_modules/molecules/camera/camera';
+
+// Box sizing partial styles:
+// Apply a natural box layout model to all elements
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  width: 1080px;
+  height: 1920px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.page {
+  width: 1080px;
+  height: 1920px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
+.sticker {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
+
+// could be temporary
+.takepicture {
+  position: relative;
+  z-index: 5;
+}

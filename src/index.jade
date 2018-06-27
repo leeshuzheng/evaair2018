@@ -1,0 +1,28 @@
+extends _layouts/base
+
+include _modules/link/link
+include _modules/atoms/frame/frame
+
+block content
+
+  .page.show#start
+    h1 start
+    
+  .page#select
+    h1 select your city
+    
+    a(data-select="sf") San Francisco
+    a(data-select="tp") Taipei
+    a(data-select="ny") New York
+    a(data-select="la") Los Angeles
+    a(data-select="vc") Vancouver
+
+  +frame()
+  
+  .page#addsticker
+    .sticker.sticker-sf sanfran sticker
+    .sticker.sticker-tp taipei sticker
+    .sticker.sticker-ny newyork sticker
+    .sticker.sticker-la losangeles sticker
+    .sticker.sticker-vc vancouver sticker
+    
