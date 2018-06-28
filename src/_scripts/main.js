@@ -5,12 +5,13 @@
 
 import $ from 'jquery';
 import Webcam from './webcam.min';
+import html2canvas from 'html2canvas';
 
 $(() => {
 
   let start = $('#start'),
-    select = $('#select'),
-    currentcity = '';
+  select = $('#select'),
+  currentcity = '';
 
   start.on('click touchstart', function() {
     start.removeClass('show');
@@ -19,12 +20,12 @@ $(() => {
   });
 
   let selectcity = $('a', select),
-    snap = $('.snap'),
-    title = $('.title', snap),
-    stewards = $('.stewards', snap),
-    building = $('.building', snap),
-    plane = $('.plane', snap),
-    takepicture = $('.takepicture', snap);
+  snap = $('.snap'),
+  title = $('.title', snap),
+  stewards = $('.stewards', snap),
+  building = $('.building', snap),
+  plane = $('.plane', snap),
+  takepicture = $('.takepicture', snap);
 
   selectcity.on('click touchstart', function() {
 
@@ -47,7 +48,7 @@ $(() => {
   // use currentcity value and let the div with class 'sticker-${currentcity}' show
 
   let stickers = $('.sticker'),
-    addstickerpage = $('#addsticker');
+  addstickerpage = $('#addsticker');
 
   takepicture.on('click touchstart', function() {
     snap.removeClass('show');
@@ -58,5 +59,23 @@ $(() => {
 
     $(`.sticker-${currentcity}`).addClass('show');
   });
+
+  let takescreenshot = $('#screenshot');
+
+  takescreenshot.click(function() {
+    html2canvas(document.querySelector("#start")).then(canvas => {
+      let img = convertCanvasToImage(canvas);
+      img.className = 'doggie2';
+      document.body.appendChild(img);
+    });
+  });
+
+
+  // helper functions
+  function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+  }
 
 });

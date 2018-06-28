@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "animate-scss": "^3.2.1",
+    "html2canvas": "^1.0.0-alpha.12",
     "jquery": "~3.1.1",
     "normalize.css": "~5.0.0"
   },
