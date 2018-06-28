@@ -1,0 +1,92 @@
+// frame styles
+
+.snap {
+  width: 1080px;
+  height: 1920px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+  background-size: contain;
+
+  &.show {
+    display: block;
+  }
+
+  .title {
+    width: auto;
+    height: 100px;
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    display: block;
+    // text-align: center;
+    // background-position: center;
+  }
+
+  .building {
+    width: 100%;
+    height: 400px;
+    // background-size: contain;
+    // background-repeat: no-repeat;
+  }
+}
+
+// could be temporary
+.takepicture {
+  position: relative;
+  z-index: 5;
+  color: $white;
+}
+
+// background by country
+// .background-losangeles {
+//   background-image: url('../images/bg_losangeles.png');
+// }
+// .background-newyork {
+//   background-image: url('../images/bg_newyork.png');
+// }
+// .background-sanfrancisco {
+//   background-image: url('../images/bg_sanfrancisco.png');
+// }
+// .background-taipei {
+//   background-image: url('../images/bg_taipei.png');
+// }
+// .background-vancouver {
+//   background-image: url('../images/bg_vancouver.png');
+// }
+
+// title by country
+// .title-losangeles {
+//   background-image: url('../images/title_losangeles.png');
+// }
+// .title-newyork {
+//   background-image: url('../images/title_newyork.png');
+// }
+// .title-sanfrancisco {
+//   background-image: url('../images/title_sanfrancisco.png');
+// }
+// .title-taipei {
+//   background-image: url('../images/title_taipei.png');
+// }
+// .title-vancouver {
+//   background-image: url('../images/title_vancouver.png');
+// }
+//
+// // building by country
+// .building-losangeles {
+//   background-image: url('../images/building_losangeles.png');
+// }
+// .building-newyork {
+//   background-image: url('../images/building_newyork.png');
+// }
+// .building-sanfrancisco {
+//   background-image: url('../images/building_sanfrancisco.png');
+// }
+// .building-taipei {
+//   background-image: url('../images/building_taipei.png');
+// }
+// .building-vancouver {
+//   background-image: url('../images/building_vancouver.png');
+// }

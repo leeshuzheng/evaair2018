@@ -1,0 +1,22 @@
+include ../../atoms/snap/snap
+
+mixin takepicture(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+
+  +snap({
+    'city': 'vancouver'
+    })
+  +snap({
+    'city': 'newyork'
+    })
+  +snap({
+    'city': 'sanfrancisco'
+    })
+  +snap({
+    'city': 'taipei'
+    })
+  +snap({
+    'city': 'losangeles'
+    })
+    

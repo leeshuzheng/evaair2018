@@ -1,0 +1,15 @@
+include ../../molecules/camera/camera
+
+mixin snap(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+
+  .snap(id="#{spec.city}" style="background-image: url('../images/bg_#{spec.city}.png')")
+    img(class="title" src="../images/title_#{spec.city}.png")
+    .stewards
+    img(class="building" src="../images/building_#{spec.city}.png")
+    .plane
+    
+    +camera()
+    
+    a(class="takepicture") take picture

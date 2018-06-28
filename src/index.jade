@@ -1,23 +1,25 @@
 extends _layouts/base
 
 include _modules/link/link
-include _modules/atoms/frame/frame
+include _modules/atoms/snap/snap
+
+include _modules/molecules/takepicture/takepicture
 
 block content
 
   .page.show#start
-    h1 start
+    img(src="../images/camera.png")
     
   .page#select
     h1 select your city
     
-    a(data-select="sf") San Francisco
-    a(data-select="tp") Taipei
-    a(data-select="ny") New York
-    a(data-select="la") Los Angeles
-    a(data-select="vc") Vancouver
-
-  +frame()
+    a(data-select="sanfrancisco") San Francisco
+    a(data-select="taipei") Taipei
+    a(data-select="newyork") New York
+    a(data-select="losangeles") Los Angeles
+    a(data-select="vancouver") Vancouver
+  
+  +takepicture()
   
   .page#addsticker
     .sticker.sticker-sf sanfran sticker

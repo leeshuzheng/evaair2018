@@ -1,10 +1,13 @@
 // Normalize Styles
 @import 'node_modules/normalize.css/normalize';
+@import 'node_modules/animate-scss/animate.scss';
+
+// Import Variables
+@import 'variables';
 
 // Import Modules
 @import '../_modules/link/link';
-@import '../_modules/atoms/frame/frame';
-
+@import '../_modules/atoms/snap/snap';
 @import '../_modules/molecules/camera/camera';
 
 // Box sizing partial styles:
@@ -44,17 +47,20 @@ body {
   }
 }
 
+#start {
+  img {
+    @include pulse(
+      $count: infinite,
+      $duration: 1.5s
+    );
+    max-width: 300px;
+  }
+}
+
 .sticker {
   display: none;
 
   &.show {
     display: block;
   }
-}
-
-
-// could be temporary
-.takepicture {
-  position: relative;
-  z-index: 5;
 }

@@ -4,8 +4,6 @@
 'use strict';
 
 import $ from 'jquery';
-// import Frame from '../_modules/atoms/frame/frame';
-// import Camera from '../_modules/molecules/camera/camera';
 import Webcam from './webcam.min';
 
 $(() => {
@@ -21,29 +19,29 @@ $(() => {
   });
 
   let selectcity = $('a', select),
-    frame = $('.frame'),
-    header = $('.header', frame),
-    stewards = $('.stewards', frame),
-    foreground = $('.foreground', frame),
-    plane = $('.plane', frame),
-    takepicture = $('.takepicture', frame);
+    snap = $('.snap'),
+    title = $('.title', snap),
+    stewards = $('.stewards', snap),
+    building = $('.building', snap),
+    plane = $('.plane', snap),
+    takepicture = $('.takepicture', snap);
 
   selectcity.on('click touchstart', function() {
 
     // hide select page
     select.removeClass('show');
-    // show frame
-    frame.addClass('show');
 
+    // get name of city
     let city = $(this).data('select');
+
+    // store name of city in global variable
     currentcity = city;
 
-    header.addClass(`header-${city}`);
-    stewards.addClass(`stewards-${city}`);
-    foreground.addClass(`foreground-${city}`);
-    plane.addClass(`plane-${city}`);
+    // show city with camera
+    let citytoshow = $(`#${city}`);
+    citytoshow.addClass('show');
 
-    Webcam.attach('#camera');
+    // Webcam.attach('.camera');
   });
 
   // use currentcity value and let the div with class 'sticker-${currentcity}' show
@@ -52,9 +50,7 @@ $(() => {
     addstickerpage = $('#addsticker');
 
   takepicture.on('click touchstart', function() {
-    frame.removeClass('show');
-
-
+    snap.removeClass('show');
 
     addstickerpage.addClass('show');
 
