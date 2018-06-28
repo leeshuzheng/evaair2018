@@ -1,6 +1,5 @@
 extends _layouts/base
 
-include _modules/link/link
 include _modules/atoms/snap/snap
 include _modules/molecules/camera/camera
 
@@ -28,11 +27,13 @@ block content
     
   
   .page#addsticker
-    .sticker.sticker-sanfrancisco sanfran sticker
+    .sticker.sticker-sanfrancisco
+      img(src="../images/ticketstub.png")
     .sticker.sticker-taipei taipei sticker
     .sticker.sticker-newyork newyork sticker
     .sticker.sticker-losangeles losangeles sticker
     .sticker.sticker-vancouver vancouver sticker
+    .holdscreenshot
     
   audio
     source(src="../assets/snap.mp3" type="audio/mpeg")

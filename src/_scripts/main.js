@@ -11,11 +11,9 @@ import html2canvas from 'html2canvas';
 
 $(() => {
 
-  $('#todrag').draggable();
-
   let start = $('#start'),
-    select = $('#select'),
-    currentcity = '';
+  select = $('#select'),
+  currentcity = '';
 
   start.on('click touchstart', function() {
     start.removeClass('show');
@@ -24,12 +22,12 @@ $(() => {
   });
 
   let selectcity = $('a', select),
-    snap = $('.snap'),
-    takepicturecontainer = $('.takepicturecontainer'),
-    timer,
-    countdown = $('#countdown'),
-    count = 5,
-    audio = $('audio');
+  snap = $('.snap'),
+  takepicturecontainer = $('.takepicturecontainer'),
+  timer,
+  countdown = $('#countdown'),
+  count = 5,
+  audio = $('audio');
 
   selectcity.on('click touchstart', function() {
 
@@ -45,69 +43,62 @@ $(() => {
     // show city with camera
     let citytoshow = $(`#${city}`);
 
-    takepicturecontainer.addClass('show');
-    citytoshow.addClass('show');
-
     // Webcam.attach('.camera');
     timer = setInterval(function() {
       handleTimer(count);
     }, 1000);
+
+    takepicturecontainer.addClass('show');
+    citytoshow.addClass('show');
+  });
+
+  let stickerimage = $('.sticker').find('img');
+
+  stickerimage.on('click touchstart', function() {
+    let clone = $(this).clone();
+    clone.addClass('dragme').css({
+      'position': 'absolute'
+      // 'top': '50%',
+      // 'left': '50%',
+      // 'transform': 'translate(-50%,-50%)'
+    }).appendTo('.holdscreenshot');
+
+    $('.dragme').draggable();
   });
 
 
   let stickers = $('.sticker'),
-    addstickerpage = $('#addsticker');
+    addstickerpage = $('#addsticker'),
+    holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
 
-  // takepicture.on('click touchstart', function() {
-  //   snap.removeClass('show');
-  //
-  //   addstickerpage.addClass('show');
-  //
-  //   stickers.removeClass('show');
-  //
-  //   $(`.sticker-${currentcity}`).addClass('show');
-  // });
-
-
-
-
-
-
-
-  // testing only
-
-  // let takescreenshot = $('#screenshot');
-  //
-  // takescreenshot.click(function() {
-  //   html2canvas(document.querySelector("#start")).then(canvas => {
-  //     let img = convertCanvasToImage(canvas);
-  //     img.className = 'doggie2';
-  //     document.body.appendChild(img);
-  //   });
-  // });
-  //
-  //
-
-
-  //// helper functions
+  // helper functions
 
   function endCountdown() {
-    // logic to finish the countdown here
-    console.log('finish countdown');
 
-    // hide container for snap countries
-    takepicturecontainer.removeClass('show');
-    // hide all countries
-    snap.removeClass('container');
+    // take snapshot
+    html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
+      let img = convertCanvasToImage(canvas);
+      img.className = 'picwithoutstickers';
+      holdscreenshot[0].appendChild(img);
+    });
 
-    addstickerpage.addClass('show');
-
-    stickers.removeClass('show');
-
-    $(`.sticker-${currentcity}`).addClass('show');
-
-    // play audio
+    // play sound
     audio[0].play();
+
+
+    // wait for 1.5 seconds then change
+    setTimeout(function() {
+      // 1) hide container for snap countries
+      takepicturecontainer.removeClass('show');
+      // 2) hide all countries
+      snap.removeClass('show');
+
+      addstickerpage.addClass('show');
+
+      stickers.removeClass('show');
+
+      $(`.sticker-${currentcity}`).addClass('show');
+    }, 1500);
   }
 
   function handleTimer() {

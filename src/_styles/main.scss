@@ -8,12 +8,10 @@
 
 
 // Import Modules
-@import '../_modules/link/link';
 @import '../_modules/atoms/snap/snap';
 @import '../_modules/molecules/camera/camera';
 
-// Box sizing partial styles:
-// Apply a natural box layout model to all elements
+
 *,
 *:before,
 *:after {
@@ -52,8 +50,8 @@ body {
 #start {
   img {
     @include pulse(
-      $count: infinite,
-      $duration: 1.5s
+    $count: infinite,
+    $duration: 1.5s
     );
     max-width: 300px;
   }
@@ -64,5 +62,14 @@ body {
 
   &.show {
     display: block;
+  }
+}
+
+.holdscreenshot {
+  max-width: 400px;
+  position: relative;
+
+  img {
+    width: 100%;
   }
 }
