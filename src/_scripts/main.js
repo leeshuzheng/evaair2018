@@ -3,12 +3,15 @@
 
 'use strict';
 
-import $ from 'jquery';
-import 'jquery-ui';
+import './jquery-1.7.2.min';
+import './jquery-ui.min';
+import './jquery.ui.touch-punch.min'; // for touch and drag
 import Webcam from './webcam.min';
 import html2canvas from 'html2canvas';
 
 $(() => {
+
+  $('#todrag').draggable();
 
   let start = $('#start'),
     select = $('#select'),
