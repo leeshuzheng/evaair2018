@@ -6,7 +6,7 @@
 import './jquery-1.7.2.min';
 import './jquery-ui.min';
 import './jquery.ui.touch-punch.min'; // for touch and drag
-import Webcam from './webcam.min';
+import Webcam from './webcam';
 import html2canvas from 'html2canvas';
 
 $(() => {
@@ -43,13 +43,15 @@ $(() => {
     // show city with camera
     let citytoshow = $(`#${city}`);
 
-    // Webcam.attach('.camera');
+    takepicturecontainer.addClass('show');
+    citytoshow.addClass('show');
+
+    // show containers then attach camera
+    Webcam.attach('#camera');
+
     timer = setInterval(function() {
       handleTimer(count);
     }, 1000);
-
-    takepicturecontainer.addClass('show');
-    citytoshow.addClass('show');
   });
 
   let stickerimage = $('.sticker').find('img');
@@ -58,9 +60,6 @@ $(() => {
     let clone = $(this).clone();
     clone.addClass('dragme').css({
       'position': 'absolute'
-      // 'top': '50%',
-      // 'left': '50%',
-      // 'transform': 'translate(-50%,-50%)'
     }).appendTo('.holdscreenshot');
 
     $('.dragme').draggable();
@@ -68,10 +67,16 @@ $(() => {
 
 
   let stickers = $('.sticker'),
-    addstickerpage = $('#addsticker'),
-    holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
+  addstickerpage = $('#addsticker'),
+  holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
 
   // helper functions
+
+  function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+    } );
+  }
 
   function endCountdown() {
 
@@ -81,6 +86,8 @@ $(() => {
       img.className = 'picwithoutstickers';
       holdscreenshot[0].appendChild(img);
     });
+
+    take_snapshot();
 
     // play sound
     audio[0].play();
