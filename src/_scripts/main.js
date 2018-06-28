@@ -4,14 +4,15 @@
 'use strict';
 
 import $ from 'jquery';
+import 'jquery-ui';
 import Webcam from './webcam.min';
 import html2canvas from 'html2canvas';
 
 $(() => {
 
   let start = $('#start'),
-  select = $('#select'),
-  currentcity = '';
+    select = $('#select'),
+    currentcity = '';
 
   start.on('click touchstart', function() {
     start.removeClass('show');
@@ -20,17 +21,12 @@ $(() => {
   });
 
   let selectcity = $('a', select),
-  snap = $('.snap'),
-  title = $('.title', snap),
-  stewards = $('.stewards', snap),
-  building = $('.building', snap),
-  plane = $('.plane', snap),
-  takepicture = $('.takepicture', snap),
-  takepicturecontainer = $('.takepicturecontainer'),
-  timer,
-  countdown = $('#countdown'),
-  count = 5,
-  audio = $('audio');
+    snap = $('.snap'),
+    takepicturecontainer = $('.takepicturecontainer'),
+    timer,
+    countdown = $('#countdown'),
+    count = 5,
+    audio = $('audio');
 
   selectcity.on('click touchstart', function() {
 
@@ -50,12 +46,14 @@ $(() => {
     citytoshow.addClass('show');
 
     // Webcam.attach('.camera');
-    timer = setInterval(function() { handleTimer(count); }, 1000);
+    timer = setInterval(function() {
+      handleTimer(count);
+    }, 1000);
   });
 
 
   let stickers = $('.sticker'),
-  addstickerpage = $('#addsticker');
+    addstickerpage = $('#addsticker');
 
   // takepicture.on('click touchstart', function() {
   //   snap.removeClass('show');
@@ -122,7 +120,7 @@ $(() => {
 
   function convertCanvasToImage(canvas) {
     var image = new Image();
-    image.src = canvas.toDataURL("image/png");
+    image.src = canvas.toDataURL('image/png');
     return image;
   }
 
