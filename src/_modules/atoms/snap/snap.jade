@@ -1,5 +1,3 @@
-include ../../molecules/camera/camera
-
 mixin snap(spec)
   - spec = spec || {}
   - spec.__class = spec.__class || ''
@@ -10,6 +8,6 @@ mixin snap(spec)
     img(class="building" src="../images/building_#{spec.city}.png")
     .plane
     
-    +camera()
+    #countdown
     
     a(class="takepicture") take picture

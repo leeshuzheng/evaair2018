@@ -2,6 +2,7 @@ extends _layouts/base
 
 include _modules/link/link
 include _modules/atoms/snap/snap
+include _modules/molecules/camera/camera
 
 include _modules/molecules/takepicture/takepicture
 
@@ -21,12 +22,18 @@ block content
     a(data-select="losangeles") Los Angeles
     a(data-select="vancouver") Vancouver
   
-  +takepicture()
+  .takepicturecontainer.page
+    +takepicture()
+    +camera()
+    
   
   .page#addsticker
-    .sticker.sticker-sf sanfran sticker
-    .sticker.sticker-tp taipei sticker
-    .sticker.sticker-ny newyork sticker
-    .sticker.sticker-la losangeles sticker
-    .sticker.sticker-vc vancouver sticker
+    .sticker.sticker-sanfrancisco sanfran sticker
+    .sticker.sticker-taipei taipei sticker
+    .sticker.sticker-newyork newyork sticker
+    .sticker.sticker-losangeles losangeles sticker
+    .sticker.sticker-vancouver vancouver sticker
+    
+  audio
+    source(src="../assets/snap.mp3" type="audio/mpeg")
     

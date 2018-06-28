@@ -74,6 +74,7 @@
       "modules": "_modules",
       "layouts": "_layouts",
       "images": "_images",
+      "assets": "_assets",
       "styles": "_styles",
       "scripts": "_scripts",
       "data": "_data"

@@ -1,8 +1,10 @@
 // camera styles
-.camera {
+#camera {
   width: 1080px;
   height: 600px;
   position: absolute;
   top: 50%;
   transform: scale(1.8) translateY(-50%) rotate(90deg);
+  background-color: grey; // temporary
+  z-index: 1;
 }
