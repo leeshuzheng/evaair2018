@@ -71,11 +71,13 @@ $(() => {
 
   let retake = $('.retake', addstickerpage),
     confirm = $('.confirm', addstickerpage),
-    enteremailpage = $('#enterEmail');
+    enteremailpage = $('#enterEmail'),
+    modal = $('.modal', addstickerpage);
 
   confirm.on('click touchstart', function() {
     // take screenshot of holdscreenshot div and append it to document body, visibility: hidden
-    // show modal with keyboard
+    // show modal with keyboard (DONE)
+    modal.addClass('is-active');
   })
 
   retake.on('click touchstart', function() {

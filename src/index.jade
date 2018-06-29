@@ -12,7 +12,7 @@ block content
     
   .page#select
     h1 select your city
-    
+     
     a(data-select="sanfrancisco") San Francisco
     a(data-select="taipei") Taipei
     a(data-select="newyork") New York
@@ -37,7 +37,12 @@ block content
     button(class="retake") Retake picture
     button(class="confirm") Confirm picture
     
-  .page#enterEmail
+    .modal
+      .modal-background
+      .modal-content
+        h1 content here
+      button(class="modal-close is-large" aria-label="close")
+    
     
   audio
     source(src="../assets/snap.mp3" type="audio/mpeg")

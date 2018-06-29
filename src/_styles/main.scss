@@ -1,6 +1,8 @@
 // Normalize Styles
 @import 'node_modules/normalize.css/normalize';
 @import 'node_modules/animate-scss/animate.scss';
+@import 'node_modules/bulma/sass/utilities/_all';
+@import 'node_modules/bulma/sass/components/modal';
 
 
 // Import Variables
@@ -72,4 +74,9 @@ body {
   img {
     width: 100%;
   }
+}
+
+.modal-content {
+  width: 864px;
+  margin-left: 108px;
 }
