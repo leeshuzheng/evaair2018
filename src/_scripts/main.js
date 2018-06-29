@@ -17,7 +17,6 @@ $(() => {
 
   start.on('click touchstart', function() {
     start.removeClass('show');
-
     select.addClass('show');
   });
 
@@ -70,12 +69,34 @@ $(() => {
   addstickerpage = $('#addsticker'),
   holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
 
+  let retake = $('.retake', addstickerpage),
+    confirm = $('.confirm', addstickerpage),
+    enteremailpage = $('#enterEmail');
+
+  confirm.on('click touchstart', function() {
+    // take screenshot of holdscreenshot div and append it to document body, visibility: hidden
+    // show modal with keyboard
+  })
+
+  retake.on('click touchstart', function() {
+    addstickerpage.removeClass('show');
+    takepicturecontainer.addClass('show');
+
+    // restart countdown from 5 seconds
+    holdscreenshot.html('');
+    count = 5;
+
+    timer = setInterval(function() {
+      handleTimer(count);
+    }, 1000);
+  })
+
   // helper functions
 
   function take_snapshot() {
-    Webcam.snap( function(data_uri) {
+    Webcam.snap(function(data_uri) {
       document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-    } );
+    });
   }
 
   function endCountdown() {
@@ -89,6 +110,7 @@ $(() => {
 
     take_snapshot();
 
+
     // play sound
     audio[0].play();
 
@@ -97,8 +119,6 @@ $(() => {
     setTimeout(function() {
       // 1) hide container for snap countries
       takepicturecontainer.removeClass('show');
-      // 2) hide all countries
-      snap.removeClass('show');
 
       addstickerpage.addClass('show');
 
