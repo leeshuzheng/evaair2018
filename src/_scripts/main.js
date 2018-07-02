@@ -201,7 +201,7 @@ $(() => {
 
       let frame = $('.snap.show').clone();
       holdscreenshot.append(frame);
-    }, 1500000);
+    }, 1500);
   }
 
   function handleTimer() {

@@ -1,0 +1,17 @@
+mixin sticker(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+  - imagepath = '../images/'
+
+  .sticker(class="sticker-#{spec.city}")
+    h2 
+      | CHOOSE
+      br 
+      | STICKER
+    
+    .column
+      each leftimg in spec.leftcolumn
+        img(src="#{imagepath}#{leftimg}.png")
+    .column
+      each rightimg in spec.rightcolumn
+        img(src="#{imagepath}#{rightimg}.png")

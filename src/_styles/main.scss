@@ -12,6 +12,7 @@
 // Import Modules
 @import '../_modules/atoms/snap/snap';
 @import '../_modules/atoms/keyboard/keyboard';
+@import '../_modules/atoms/sticker/sticker';
 @import '../_modules/molecules/camera/camera';
 
 $screenshotwidth: 400px;
@@ -45,6 +46,7 @@ body {
   left: 0;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
   display: none;
 
   .toprightlogo {
@@ -92,20 +94,8 @@ body {
   }
 }
 
-#addsticker {
-  background-image: url('../images/bg_common.png');
-}
-
 #thanks {
   background-image: url('../images/bg_common.png');
-}
-
-.sticker {
-  display: none;
-
-  &.show {
-    display: block;
-  }
 }
 
 // .holdscreenshot {

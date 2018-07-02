@@ -1,0 +1,61 @@
+// sticker styles
+#addsticker {
+  background-image: url('../images/bg_common.png');
+
+  h1 {
+    color: $orange;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+  }
+
+  .sticker {
+    background-color: $orange;
+    border: 2px solid $black;
+    border-radius: 10px;
+    height: 500px;
+    width: 200px;
+    padding: 20px;
+    white-space: nowrap;
+    display: none;
+
+    &.show {
+      display: inline-block;
+    }
+
+    h2 {
+      color: $white;
+      text-align: center;
+    }
+
+    .column {
+      display: inline-block;
+      width: 50%;
+      text-align: center;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+  }
+
+  .holdscreenshot {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+
+    .dragme {
+      max-width: 100px;
+      top: 0;
+      left: 0;
+    }
+
+    .snap {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
