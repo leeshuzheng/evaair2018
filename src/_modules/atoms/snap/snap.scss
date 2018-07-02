@@ -10,6 +10,7 @@
   display: none;
   background-size: contain;
   z-index: 2;
+  text-align: center;
 
   &.show {
     display: block;
@@ -17,12 +18,17 @@
 
   .title {
     width: auto;
-    height: 100px;
+    height: 140px;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .building {
     width: 100%;
     height: 400px;
+    position: absolute;
+    bottom: 210px;
+    left: 0;
   }
 }

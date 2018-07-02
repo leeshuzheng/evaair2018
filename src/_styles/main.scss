@@ -47,19 +47,57 @@ body {
   background-repeat: no-repeat;
   display: none;
 
+  .toprightlogo {
+    max-width: 300px;
+    display: block;
+    margin-right: 70px;
+    margin-left: auto;
+    margin-top: 60px;
+  }
+
   &.show {
     display: block;
   }
 }
 
 #start {
-  img {
+  background-image: url('../images/bg_main.png');
+  text-align: center;
+
+  #snaptowin {
     @include pulse(
     $count: infinite,
     $duration: 1.5s
     );
-    max-width: 300px;
+    width: 680px;
+    margin-top: 200px;
   }
+
+  #logo {
+    display: block;
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+  }
+}
+
+#select {
+  background-image: url('../images/bg_selection.png');
+
+  a {
+    img {
+      max-width: 200px;
+    }
+  }
+}
+
+#addsticker {
+  background-image: url('../images/bg_common.png');
+}
+
+#thanks {
+  background-image: url('../images/bg_common.png');
 }
 
 .sticker {

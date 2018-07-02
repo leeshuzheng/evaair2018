@@ -9,23 +9,32 @@ include _modules/molecules/takepicture/takepicture
 block content
 
   .page.show#start
-    img(id="todrag" src="../images/camera.png")
+    img(id="logo" src="../images/logo.png")
+    img(id="snaptowin" src="../images/camera.png")
     
   .page#select
-    h1 select your city
+    img(class="toprightlogo" src="../images/logo.png")
+    h1 Choose Your Destination
      
-    a(data-select="sanfrancisco") San Francisco
-    a(data-select="taipei") Taipei
-    a(data-select="newyork") New York
-    a(data-select="losangeles") Los Angeles
-    a(data-select="vancouver") Vancouver
+    a(data-select="sanfrancisco")
+      img(src="../images/title_sanfrancisco.png")
+    a(data-select="taipei")
+      img(src="../images/title_taipei.png")
+    a(data-select="newyork")
+      img(src="../images/title_newyork.png")
+    a(data-select="losangeles")
+      img(src="../images/title_losangeles.png")
+    a(data-select="vancouver")
+      img(src="../images/title_vancouver.png")
   
   .takepicturecontainer.page
+    img(class="toprightlogo" src="../images/logo.png")
     +takepicture()
     +camera()
     
   
   .page#addsticker
+    img(class="toprightlogo" src="../images/logo.png")
     .sticker.sticker-sanfrancisco
       img(src="../images/ticketstub.png")
     .sticker.sticker-taipei taipei sticker
@@ -47,7 +56,8 @@ block content
         button(class="close") Close
         
   .page#thanks
-    h1 thank you for participating
+    img(class="toprightlogo" src="../images/logo.png")
+    h1 Thank you!!! Hope you had enjoyed yourself!
     button start again
     
     

@@ -37,11 +37,11 @@ $(() => {
   });
 
   let selectcity = $('a', select),
-    snap = $('.snap'),
-    takepicturecontainer = $('.takepicturecontainer'),
-    timer,
-    countdown = $('#countdown'),
-    audio = $('audio');
+  snap = $('.snap'),
+  takepicturecontainer = $('.takepicturecontainer'),
+  timer,
+  countdown = $('#countdown'),
+  audio = $('audio');
 
 
   selectcity.on('click touchstart', function() {
@@ -82,13 +82,13 @@ $(() => {
 
 
   let stickers = $('.sticker'),
-    addstickerpage = $('#addsticker'),
-    holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
+  addstickerpage = $('#addsticker'),
+  holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
 
   let retake = $('.retake', addstickerpage),
-    confirm = $('.confirm', addstickerpage),
-    enteremailpage = $('#enterEmail'),
-    modal = $('.modal', addstickerpage);
+  confirm = $('.confirm', addstickerpage),
+  enteremailpage = $('#enterEmail'),
+  modal = $('.modal', addstickerpage);
 
   confirm.on('click touchstart', function() {
     // take screenshot of holdscreenshot div and append it to document body, visibility: hidden
@@ -110,16 +110,15 @@ $(() => {
   })
 
   let submitbtn = $('button', modal),
-    close = $('.close', modal),
-    thanks = $('#thanks'),
-    startagain = $('button', thanks);
+  close = $('.close', modal),
+  thanks = $('#thanks'),
+  startagain = $('button', thanks);
 
   close.on('click touchstart', function() {
     modal.removeClass('is-active');
   });
 
   $('.modal-background').on('click touchstart', function() {
-    console.log('clicking on background but not content');
     $('.modal').removeClass('is-active');
   });
 
@@ -129,7 +128,7 @@ $(() => {
     // $.ajax({
     //   type: 'POST',
     //   dataType: 'text',
-    //   // url: cc.ajaxurl,
+    //   // url: evaair2018.ajaxurl,
     //   data: {
     //     'action' : 'update_count',
     //     'label': eventName,
@@ -150,7 +149,7 @@ $(() => {
 
   startagain.on('click touchstart', function() {
     reset();
-  })
+  });
 
   // helper functions
 
@@ -171,11 +170,12 @@ $(() => {
 
   function take_snapshot() {
     Webcam.snap(function(data_uri) {
-      console.log(data_uri);
+
       document.getElementById('webcamimg').innerHTML = '<img src="'+data_uri+'"/>';
+
     });
 
-    html2canvas(document.querySelector('body')).then(canvas => {
+    html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
       let img = convertCanvasToImage(canvas);
       img.className = 'heeey';
       holdscreenshot[0].appendChild(img);
@@ -201,7 +201,7 @@ $(() => {
 
       let frame = $('.snap.show').clone();
       holdscreenshot.append(frame);
-    }, 1500);
+    }, 1500000);
   }
 
   function handleTimer() {
@@ -216,44 +216,38 @@ $(() => {
   }
 
   function base64ToBlob(base64, mime) {
-				mime = mime || '';
-				var sliceSize = 1024;
-				var byteChars = window.atob(base64);
-				var byteArrays = [];
+    mime = mime || '';
+    var sliceSize = 1024;
+    var byteChars = window.atob(base64);
+    var byteArrays = [];
 
-				for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
-					var slice = byteChars.slice(offset, offset + sliceSize);
+    for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+      var slice = byteChars.slice(offset, offset + sliceSize);
 
-					var byteNumbers = new Array(slice.length);
-					for (var i = 0; i < slice.length; i++) {
-						byteNumbers[i] = slice.charCodeAt(i);
-					}
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
 
-					var byteArray = new Uint8Array(byteNumbers);
+      var byteArray = new Uint8Array(byteNumbers);
 
-					byteArrays.push(byteArray);
-				}
+      byteArrays.push(byteArray);
+    }
 
-				return new Blob(byteArrays, {type: mime});
-			}
-
-			var image = $('#theImage').attr('src');
-
-			var base64ImageContent = image.replace(/^data:image\/(png|jpg);base64,/, "");
-
-			var blob = base64ToBlob(base64ImageContent, 'image/png');
-
-			console.log(blob);
+    return new Blob(byteArrays, {type: mime});
+  }
 
   function convertCanvasToImage(canvas) {
     var image = new Image();
-    var base64 = canvas.toDataURL('image/png');
+    image.src = canvas.toDataURL('image/png');
 
-    var base64ImageContent = base64.replace(/^data:image\/(png|jpg);base64,/, "");
 
-    var blob = base64ToBlob(base64ImageContent, 'image/png');
 
-    image.src = blob;
+    // var base64ImageContent = base64.replace(/^data:image\/(png|jpg);base64,/, "");
+
+    // var blob = base64ToBlob(base64ImageContent, 'image/png');
+
+    // image.src = blob;
 
     return image;
   }
