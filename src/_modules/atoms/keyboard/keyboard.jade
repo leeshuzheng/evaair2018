@@ -1,0 +1,121 @@
+mixin keyboard(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+
+  #container
+    input#write(type="email", placeholder="your e-mail", title="Please enter a valid email address", trigger="manual")
+    |             
+    ul#keyboard
+      li.symbol
+        span.off 1
+        span.on 1
+      |               
+      li.symbol
+        span.off 2
+        span.on 2
+      |               
+      li.symbol
+        span.off 3
+        span.on 3
+      |               
+      li.symbol
+        span.off 4
+        span.on 4
+      |               
+      li.symbol
+        span.off 5
+        span.on 5
+      |               
+      li.symbol
+        span.off 6
+        span.on 6
+      |               
+      li.symbol
+        span.off 7
+        span.on 7
+      |               
+      li.symbol
+        span.off 8
+        span.on 8
+      |               
+      li.symbol
+        span.off 9
+        span.on 9
+      |               
+      li.symbol
+        span.off 0
+        span.on 0
+      |               
+      li.delete.lastitem
+        img(src="../images/backspace.svg")
+      |               
+      li.letter q
+      |               
+      li.letter w
+      |               
+      li.letter e
+      |               
+      li.letter r
+      |               
+      li.letter t
+      |               
+      li.letter y
+      |               
+      li.letter u
+      |               
+      li.letter i
+      |               
+      li.letter o
+      |               
+      li.letter p
+      |               
+      li.symbol
+        span.off -
+        span.on _
+      |               
+      li.letter a
+      |               
+      li.letter s
+      |               
+      li.letter d
+      |               
+      li.letter f
+      |               
+      li.letter g
+      |               
+      li.letter h
+      |               
+      li.letter j
+      |               
+      li.letter k
+      |               
+      li.letter l
+      |               
+      li.symbol
+        span.off .
+        span.on .
+      |               
+      li.symbol
+        span.off @
+        span.on @
+      |               
+      li.left-shift
+        img(src="../images/shift.svg")
+      |               
+      li.letter z
+      |               
+      li.letter x
+      |               
+      li.letter c
+      |               
+      li.letter v
+      |               
+      li.letter b
+      |               
+      li.letter n
+      |               
+      li.letter m
+      |               
+      li.letter.com .com
+      |               
+      .clear

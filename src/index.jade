@@ -1,6 +1,7 @@
 extends _layouts/base
 
 include _modules/atoms/snap/snap
+include _modules/atoms/keyboard/keyboard
 include _modules/molecules/camera/camera
 
 include _modules/molecules/takepicture/takepicture
@@ -31,8 +32,9 @@ block content
     .sticker.sticker-newyork newyork sticker
     .sticker.sticker-losangeles losangeles sticker
     .sticker.sticker-vancouver vancouver sticker
+    
     .holdscreenshot
-    #my_result
+      #webcamimg
     
     button(class="retake") Retake picture
     button(class="confirm") Confirm picture
@@ -40,8 +42,13 @@ block content
     .modal
       .modal-background
       .modal-content
-        h1 content here
-      button(class="modal-close is-large" aria-label="close")
+        +keyboard()
+        button(type="submit") Submit
+        button(class="close") Close
+        
+  .page#thanks
+    h1 thank you for participating
+    button start again
     
     
   audio

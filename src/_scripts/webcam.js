@@ -812,8 +812,6 @@ var Webcam = {
 		if (!user_callback) user_callback = this.params.user_callback;
 		if (!user_canvas) user_canvas = this.params.user_canvas;
 
-		console.log(user_callback, user_canvas);
-
 		// take snapshot and return image data uri
 		var self = this;
 		var params = this.params;
@@ -843,9 +841,10 @@ var Webcam = {
 		// create inline function, called after image load (flash) or immediately (native)
 		var func = function() {
 			// render image if needed (flash)
-			if (this.src && this.width && this.height) {
-				context.drawImage(this, 0, 0, params.dest_width, params.dest_height);
-			}
+
+			// if (this.src && this.width && this.height) {
+			// 	context.drawImage(this, 0, 0, params.dest_width, params.dest_height);
+			// }
 
 			// crop if desired
 			if (params.crop_width && params.crop_height) {
@@ -877,6 +876,7 @@ var Webcam = {
 			}
 
 			// fire user callback if desired
+
 			user_callback(
 				user_canvas ? null : canvas.toDataURL('image/' + params.image_format, params.jpeg_quality / 100 ),
 				canvas,

@@ -11,7 +11,10 @@
 
 // Import Modules
 @import '../_modules/atoms/snap/snap';
+@import '../_modules/atoms/keyboard/keyboard';
 @import '../_modules/molecules/camera/camera';
+
+$screenshotwidth: 400px;
 
 
 *,
@@ -67,12 +70,20 @@ body {
   }
 }
 
-.holdscreenshot {
-  max-width: 400px;
-  position: relative;
+// .holdscreenshot {
+//   max-width: 400px;
+//   position: relative;
+//
+//   img {
+//     width: 100%;
+//   }
+// }
 
+#webcamimg {
+  transform: rotate(90deg);
   img {
-    width: 100%;
+    height: $screenshotwidth;
+    width: auto;
   }
 }
 
