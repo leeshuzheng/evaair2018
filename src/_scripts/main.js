@@ -8,7 +8,9 @@ import './jquery-ui.min';
 import './jquery.ui.touch-punch.min'; // for touch and drag
 import Webcam from './webcam';
 import html2canvas from 'html2canvas';
+
 import Keyboard from '../_modules/atoms/keyboard/keyboard';
+import Sticker from '../_modules/atoms/sticker/sticker';
 
 // take snapshot
 
@@ -22,6 +24,7 @@ $(() => {
   });
 
   new Keyboard();
+  new Sticker();
 
   let start = $('#start'),
   select = $('#select'),
@@ -69,39 +72,26 @@ $(() => {
     }, 1000);
   });
 
-  let stickerimage = $('.sticker').find('img');
-
-  stickerimage.on('click touchstart', function() {
-    let clone = $(this).clone();
-    clone.addClass('dragme').css({
-      'position': 'absolute'
-    }).appendTo('.holdscreenshot');
-
-    $('.dragme').draggable();
-  });
-
 
   let stickers = $('.sticker'),
-  addstickerpage = $('#addsticker'),
-  holdscreenshot = $('.holdscreenshot'); // holder to score screenshot
-
-  let retake = $('.retake', addstickerpage),
-  confirm = $('.confirm', addstickerpage),
-  enteremailpage = $('#enterEmail'),
-  modal = $('.modal', addstickerpage);
+    addstickerpage = $('#addsticker'),
+    holdscreenshot = $('.holdscreenshot'),
+    retake = $('.retake', addstickerpage),
+    confirm = $('.confirm', addstickerpage),
+    enteremailpage = $('#enterEmail'),
+    modal = $('.modal', addstickerpage);
 
   confirm.on('click touchstart', function() {
-    // take screenshot of holdscreenshot div and append it to document body, visibility: hidden
-    // show modal with keyboard (DONE)
     modal.addClass('is-active');
-  })
+  });
 
   retake.on('click touchstart', function() {
     addstickerpage.removeClass('show');
     takepicturecontainer.addClass('show');
 
-    // restart countdown from 5 seconds
-    holdscreenshot.html('');
+    // restart countdown
+    let webcamimg = '<div id="webcamimg"></div>';
+    holdscreenshot.html(webcamimg);
     setcount();
 
     timer = setInterval(function() {
@@ -110,9 +100,9 @@ $(() => {
   })
 
   let submitbtn = $('button', modal),
-  close = $('.close', modal),
-  thanks = $('#thanks'),
-  startagain = $('button', thanks);
+    close = $('.close', modal),
+    thanks = $('#thanks'),
+    startagain = $('button', thanks);
 
   close.on('click touchstart', function() {
     modal.removeClass('is-active');
@@ -166,19 +156,19 @@ $(() => {
     allpages.removeClass('show');
     start.addClass('show');
     setcount();
+    holdscreenshot.html(webcamimg); // empty holdscreensho and webcamimg divs
+    // formData = new FormData(); // reset formData
   }
 
   function take_snapshot() {
     Webcam.snap(function(data_uri) {
-
       document.getElementById('webcamimg').innerHTML = '<img src="'+data_uri+'"/>';
-
     });
 
     html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
       let img = convertCanvasToImage(canvas);
       img.className = 'heeey';
-      holdscreenshot[0].appendChild(img);
+      $('#webcamimg')[0].appendChild(img);
     });
   }
 
@@ -201,6 +191,17 @@ $(() => {
 
       let frame = $('.snap.show').clone();
       holdscreenshot.append(frame);
+
+      let stickerimage = $('.sticker').find('img');
+
+      stickerimage.on('click touchstart', function() {
+        let clone = $(this).clone();
+        clone.addClass('dragme').css({
+          'position': 'absolute'
+        }).appendTo('.holdscreenshot');
+
+        $('.dragme').draggable();
+      });
     }, 1500);
   }
 
