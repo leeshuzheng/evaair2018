@@ -8,7 +8,7 @@ export default class Keyboard {
       shift = false,
       capslock = false;
 
-    $('#keyboard li').click(function(){
+    $('#keyboard li').click(function() {
       let $this = $(this),
         character = $this.html(); // If it's a lowercase letter, nothing happens to this letiable
 

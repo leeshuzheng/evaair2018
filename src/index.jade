@@ -41,49 +41,50 @@ block content
      | Get Creative!
      br
      | Edit Your Photo
-     
+    
     .holdscreenshot
        #webcamimg
-       
+     
     +sticker({
       'city': 'sanfrancisco',
-      'leftcolumn': ['ticketstub', '2', '3'],
-      'rightcolumn': ['4', '5', '6']
+      'leftcolumn': ['1', '2', '3', '4'],
+      'rightcolumn': ['5', '6', '7', '8']
       })
       
     +sticker({
       'city': 'taipei',
-      'leftcolumn': ['1', '2', '3'],
-      'rightcolumn': ['4', '5', '6']
+      'leftcolumn': ['1', '2', '3', '4'],
+      'rightcolumn': ['5', '6', '7', '8']
       })
         
     +sticker({
       'city': 'newyork',
-      'leftcolumn': ['1', '2', '3'],
-      'rightcolumn': ['4', '5', '6']
+      'leftcolumn': ['1', '2', '3', '4'],
+      'rightcolumn': ['5', '6', '7', '8']
       })
           
     +sticker({
       'city': 'losangeles',
-      'leftcolumn': ['1', '2', '3'],
-      'rightcolumn': ['4', '5', '6']
+      'leftcolumn': ['1', '2', '3', '4'],
+      'rightcolumn': ['5', '6', '7', '8']
       })
             
     +sticker({
       'city': 'vancouver',
-      'leftcolumn': ['1', '2', '3'],
-      'rightcolumn': ['4', '5', '6']
+      'leftcolumn': ['1', '2', '3', '4'],
+      'rightcolumn': ['5', '6', '7', '8']
       })
     
-    button(class="retake") Retake picture
-    button(class="confirm") Confirm picture
+    .buttons
+      button(class="retake cooperBlack") RETAKE
+      button(class="confirm cooperBlack") DONE!
     
     .modal
       .modal-background
       .modal-content
+        h1 Enter your email address
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         +keyboard()
-        button(type="submit") Submit
-        button(class="close") Close
         
   .page#thanks
     img(class="toprightlogo" src="../images/logo.png")

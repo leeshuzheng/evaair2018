@@ -3,7 +3,9 @@ mixin keyboard(spec)
   - spec.__class = spec.__class || ''
 
   #container
-    input#write(type="email", placeholder="your e-mail", title="Please enter a valid email address", trigger="manual")
+    input#write(type="email", placeholder="your e-mail", title="Please enter a valid email address")
+    button(class="close") CANCEL
+    button(type="submit" class="submit") SUBMIT
     |             
     ul#keyboard
       li.symbol
@@ -46,7 +48,7 @@ mixin keyboard(spec)
         span.off 0
         span.on 0
       |               
-      li.delete.lastitem
+      li.delete.lastitem.darkGrey
         img(src="../images/backspace.svg")
       |               
       li.letter q
@@ -69,7 +71,7 @@ mixin keyboard(spec)
       |               
       li.letter p
       |               
-      li.symbol
+      li.symbol.darkGrey
         span.off -
         span.on _
       |               
@@ -91,15 +93,15 @@ mixin keyboard(spec)
       |               
       li.letter l
       |               
-      li.symbol
+      li.symbol.darkGrey
         span.off .
         span.on .
       |               
-      li.symbol
+      li.symbol.darkGrey
         span.off @
         span.on @
       |               
-      li.left-shift
+      li.left-shift.darkGrey
         img(src="../images/shift.svg")
       |               
       li.letter z
@@ -116,6 +118,6 @@ mixin keyboard(spec)
       |               
       li.letter m
       |               
-      li.letter.com .com
+      li.letter.com.darkGrey .com
       |               
       .clear

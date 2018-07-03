@@ -16,8 +16,6 @@
 @import '../_modules/atoms/sticker/sticker';
 @import '../_modules/molecules/camera/camera';
 
-$screenshotwidth: 400px;
-
 
 *,
 *:before,
@@ -99,7 +97,7 @@ body {
     max-width: 70%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 55pt;
+    font-size: $largetext;
     margin-top: 260px;
   }
 
@@ -126,24 +124,10 @@ body {
   background-image: url('../images/bg_common.png');
 }
 
-// .holdscreenshot {
-//   max-width: 400px;
-//   position: relative;
-//
-//   img {
-//     width: 100%;
-//   }
-// }
-
 #webcamimg {
   transform: rotate(90deg);
   img {
     height: $screenshotwidth;
     width: auto;
   }
-}
-
-.modal-content {
-  width: 864px;
-  margin-left: 108px;
 }

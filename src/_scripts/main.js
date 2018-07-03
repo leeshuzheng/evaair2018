@@ -8,6 +8,7 @@ import './jquery-ui.min';
 import './jquery.ui.touch-punch.min'; // for touch and drag
 import Webcam from './webcam';
 import html2canvas from 'html2canvas';
+import tippy from 'tippy.js';
 
 import Keyboard from '../_modules/atoms/keyboard/keyboard';
 import Sticker from '../_modules/atoms/sticker/sticker';
@@ -15,7 +16,6 @@ import Sticker from '../_modules/atoms/sticker/sticker';
 // take snapshot
 
 $(() => {
-
   // change to false when deploying to production
   window.production = true;
 
@@ -74,12 +74,12 @@ $(() => {
 
 
   let stickers = $('.sticker'),
-    addstickerpage = $('#addsticker'),
-    holdscreenshot = $('.holdscreenshot'),
-    retake = $('.retake', addstickerpage),
-    confirm = $('.confirm', addstickerpage),
-    enteremailpage = $('#enterEmail'),
-    modal = $('.modal', addstickerpage);
+  addstickerpage = $('#addsticker'),
+  holdscreenshot = $('.holdscreenshot'),
+  retake = $('.retake', addstickerpage),
+  confirm = $('.confirm', addstickerpage),
+  enteremailpage = $('#enterEmail'),
+  modal = $('.modal', addstickerpage);
 
   confirm.on('click touchstart', function() {
     modal.addClass('is-active');
@@ -99,10 +99,17 @@ $(() => {
     }, 1000);
   })
 
-  let submitbtn = $('button', modal),
+  let submitbtn = $('.submit', modal),
     close = $('.close', modal),
     thanks = $('#thanks'),
-    startagain = $('button', thanks);
+    startagain = $('button', thanks),
+    emailInput = document.querySelector('#write');
+
+    // init tippy
+    tippy(emailInput, {
+      arrow: true,
+      trigger: 'manual'
+    });
 
   close.on('click touchstart', function() {
     modal.removeClass('is-active');
@@ -113,28 +120,37 @@ $(() => {
   });
 
   submitbtn.on('click touchstart', function() {
-    let email = $('input', modal).val();
+      let emailValue = emailInput.value;
 
-    // $.ajax({
-    //   type: 'POST',
-    //   dataType: 'text',
-    //   // url: evaair2018.ajaxurl,
-    //   data: {
-    //     'action' : 'update_count',
-    //     'label': eventName,
-    //     'frame': currentFrame,
-    //     'panel': currentPanel,
-    //     'add_option' : value
-    //   },
-    //   success: function (data) {
-    //     console.log(data);
-    //   },
-    //   error: function(e) {
-    //   }
-    // });
+      console.log('init tippy');
+      // init tippy
 
-    addstickerpage.removeClass('show');
-    thanks.addClass('show');
+    if (isValidEmail(emailValue)) {
+      addstickerpage.removeClass('show');
+      thanks.addClass('show');
+
+      console.log('hide tippy');
+      // hide tippy
+      emailInput._tippy.hide();
+
+      // $.ajax({
+      //   type: 'POST',
+      //   // url: evaair2018.ajaxurl,
+      //   data: {
+      //     'action' : 'update_user_submissions',
+      //   },
+      //   success: function (data) {
+      //     console.log(data);
+      //   },
+      //   error: function(e) {
+              // console.log(e);
+      //   }
+      // });
+    } else {
+      // show tippy
+      console.log('show tippy');
+      emailInput._tippy.show();
+    }
   });
 
   startagain.on('click touchstart', function() {
@@ -142,6 +158,11 @@ $(() => {
   });
 
   // helper functions
+
+  function isValidEmail(e) {
+    var filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+    return String(e).search (filter) != -1;
+  }
 
   function setcount() {
     if (window.production) {
@@ -156,7 +177,7 @@ $(() => {
     allpages.removeClass('show');
     start.addClass('show');
     setcount();
-    holdscreenshot.html(webcamimg); // empty holdscreensho and webcamimg divs
+    holdscreenshot.html(webcamimg); // empty holdscreenshot and webcamimg divs
     // formData = new FormData(); // reset formData
   }
 
