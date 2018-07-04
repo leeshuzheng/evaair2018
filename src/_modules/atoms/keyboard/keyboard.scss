@@ -1,5 +1,5 @@
 // keyboard styles
-$keySize: 71.3px;
+$keySize: 71px;
 
 .tippy-tooltip {
   font-size: 15pt;
@@ -16,7 +16,6 @@ $keySize: 71.3px;
     &:first-of-type {
       background-color: grey;
     }
-
   }
 }
 
@@ -51,7 +50,7 @@ $keySize: 71.3px;
     text-align: center;
     background: $grey;
     color: $white;
-    border: 1px solid #f9f9f9;
+    border: 1px solid $darkGrey;
     border-radius: 5px;
   }
   .return {

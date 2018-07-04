@@ -31,7 +31,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -56,6 +56,17 @@ body {
     margin-top: 60px;
   }
 
+  .topleftplane {
+    position: absolute;
+    left: 60px;
+    width: 522px;
+    top: 63px;
+
+    &.other {
+      left: 0;
+    }
+  }
+
   &.show {
     display: block;
   }
@@ -66,8 +77,17 @@ body {
 }
 
 #start {
-  background-image: url('../images/bg_main.png');
+  background-image: url('../images/bg_start.png');
   text-align: center;
+  position: relative;
+
+  #logo {
+    display: block;
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+  }
 
   #snaptowin {
     @include pulse(
@@ -75,15 +95,99 @@ body {
     $duration: 1.5s
     );
     width: 680px;
-    margin-top: 200px;
+    margin-top: 150px;
   }
 
-  #logo {
-    display: block;
-    width: 550px;
+  .plane {
+    position: absolute;
+    width: 220px;
+    left: 90px;
+    top: 370px;
+  }
+
+  #clicktostart {
+    text-align: center;
+    margin-top: 60px;
+
+    #triangle {
+      border-bottom: 25px solid $orange;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      height: 0;
+      width: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    p {
+      color: $orange;
+      font-size: 22pt;
+      margin-top: .6em;
+    }
+  }
+
+  #standachance {
+    margin-top: 40px;
+    position: relative;
+
+    p {
+      color: $orange;
+      font-size: 55pt;
+      margin: 0;
+      font-weight: bold;
+
+      &.small {
+        color: $black;
+        font-size: 25pt;
+        font-weight: lighter;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: -16px;
+      height: 130px;
+      right: 114px;
+    }
+  }
+
+  hr {
+    background-color: $lightGrey;
+    margin-top: 30px;
+    width: 70%;
+  }
+
+  #steps {
+    width: 70%;
+    color: $lightGrey;
+    white-space: nowrap;
+    font-weight: lighter;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 70px;
+
+    .step {
+      display: inline-block;
+      width: 25%;
+      float: left;
+
+      h1 {
+        font-weight: lighter;
+        font-size: 26pt;
+        margin-bottom: .4em;
+      }
+
+      span {
+        font-size: 15pt;
+      }
+    }
+  }
+
+  #tnc {
+    color: $lightGrey;
+    font-size: 10pt;
+    position: absolute;
+    width: 100%;
+    bottom: 180px;
   }
 }
 
@@ -98,17 +202,19 @@ body {
     margin-left: auto;
     margin-right: auto;
     font-size: $largetext;
-    margin-top: 260px;
+    margin-top: 280px;
+    font-weight: normal;
+    margin-bottom: .35em;
   }
 
   span {
-    color: $black;
+    color: $lightGrey;
     max-width: 45%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     font-size: 20pt;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
   }
 
   a {
@@ -118,10 +224,73 @@ body {
       margin-right: 30px;
     }
   }
+
+  #singlesteward {
+    position: absolute;
+    width: 270px;
+    left: 200px;
+    bottom: 125px;
+  }
+
+  #besidesinglesteward {
+    position: absolute;
+    width: 445px;
+    right: 190px;
+    bottom: 236px;
+  }
 }
 
 #thanks {
   background-image: url('../images/bg_common.png');
+
+  h1 {
+    font-family: $cooperBlack;
+    color: $orange;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 280px;
+    font-size: 42pt;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  span {
+    color: $black;
+    font-size: 30pt;
+    text-align: center;
+    display: block;
+    margin-top: 60px;
+    font-weight: bold;
+  }
+
+  p {
+    color: $lightGrey;
+    font-size: 26pt;
+    text-align: center;
+    display: block;
+    font-weight: lighter;
+    line-height: 1.5;
+    margin-top: 60px;
+    span {
+      color: $orange;
+      margin: .1em 0;
+    }
+  }
+
+  #girlleft {
+    width: 175px;
+    position: absolute;
+    left: 130px;
+    bottom: 610px;
+  }
+
+  #girlright {
+    width: 189px;
+    position: absolute;
+    right: 130px;
+    bottom: 611px;
+  }
 }
 
 #webcamimg {
