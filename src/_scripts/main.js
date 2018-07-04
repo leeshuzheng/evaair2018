@@ -13,15 +13,22 @@ import tippy from 'tippy.js';
 import Keyboard from '../_modules/atoms/keyboard/keyboard';
 import Sticker from '../_modules/atoms/sticker/sticker';
 
-// take snapshot
-
 $(() => {
   // change to false when deploying to production
   window.production = true;
 
+  var mywebcam = {};
+
+  mywebcam.width = 400;
+  mywebcam.height = 400 * 1.778;
+
   Webcam.set({
-    image_format: 'jpeg'
+    image_format: 'jpeg',
+    dest_width: mywebcam.width,
+    dest_height: mywebcam.height
   });
+
+
 
   new Keyboard();
   new Sticker();
@@ -100,16 +107,16 @@ $(() => {
   })
 
   let submitbtn = $('.submit', modal),
-    close = $('.close', modal),
-    thanks = $('#thanks'),
-    startagain = $('button', thanks),
-    emailInput = document.querySelector('#write');
+  close = $('.close', modal),
+  thanks = $('#thanks'),
+  startagain = $('button', thanks),
+  emailInput = document.querySelector('#write');
 
-    // init tippy
-    tippy(emailInput, {
-      arrow: true,
-      trigger: 'manual'
-    });
+  // init tippy
+  tippy(emailInput, {
+    arrow: true,
+    trigger: 'manual'
+  });
 
   close.on('click touchstart', function() {
     modal.removeClass('is-active');
@@ -120,16 +127,12 @@ $(() => {
   });
 
   submitbtn.on('click touchstart', function() {
-      let emailValue = emailInput.value;
-
-      console.log('init tippy');
-      // init tippy
+    let emailValue = emailInput.value;
 
     if (isValidEmail(emailValue)) {
       addstickerpage.removeClass('show');
       thanks.addClass('show');
 
-      console.log('hide tippy');
       // hide tippy
       emailInput._tippy.hide();
 
@@ -143,7 +146,7 @@ $(() => {
       //     console.log(data);
       //   },
       //   error: function(e) {
-              // console.log(e);
+      // console.log(e);
       //   }
       // });
     } else {
@@ -261,9 +264,9 @@ $(() => {
 
   function convertCanvasToImage(canvas) {
     var image = new Image();
-    image.src = canvas.toDataURL('image/png');
+    var base64 = canvas.toDataURL('image/png');
 
-
+    image.src = base64;
 
     // var base64ImageContent = base64.replace(/^data:image\/(png|jpg);base64,/, "");
 

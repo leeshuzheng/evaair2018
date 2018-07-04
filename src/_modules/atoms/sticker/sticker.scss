@@ -67,10 +67,23 @@
     }
   }
 
-  button {
+  .each {
     border: 3px solid $black;
     border-radius: 10px;
     padding: 10px;
+    display: inline-block;
+
+    &:before {
+      height: 50%;
+      width: 100%;
+      display: block;
+    }
+
+    &:after {
+      height: 50%;
+      width: 100%;
+      display: block;
+    }
   }
 
   .modal-content {
