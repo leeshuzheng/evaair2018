@@ -658,49 +658,50 @@ function get_post_by_title($page_title, $output = OBJECT) {
 	return null;
 }
 
-function wpdocs_set_html_mail_content_type() {
-	return 'text/html';
-}
-
-function email($to, $sub, $msg, $header, $attachments)
+function email($to, $sub, $msg, $header)
 {
+
+	echo $msg;
+
 	ob_start();
 	echo $msg;
 	$message = ob_get_contents();
 	ob_end_clean();
 
-	$mailSuccess = wp_mail($to, $sub, $message, $header, $attachments);
+	// $mailSuccess = wp_mail($to, $sub, $message, $header);
+	$mailSuccess = wp_mail($to, $sub, $message, $header);
 
+	var_dump($mailSuccess);
 	return $mailSuccess;
 }
 
 // add_action( 'wp_ajax_nopriv_send_email', 'send_email' );
 // add_action( 'wp_ajax_send_email', 'send_email' );
 
-// function send_email($currName, $to, $token)
-// {
-// 	$email = isset($_POST['email']) ? sanitize_text_field($_POST['email']) : "";
-// 	$recipe = isset($_POST['recipe']) ? sanitize_text_field($_POST['recipe']) : ""; // Apple Pie Spice
-// 	$attachmentName = str_replace(' ', '-', $recipe);
-// 	$headers = array('Content-Type: text/html; charset=UTF-8');
-// 	$attachment = array(WP_CONTENT_DIR . '/uploads/2018/03/' . $attachmentName . '-recipe.pdf');
-// 	$break = '<br><br>';
-//
-// 	$subject = "Here's your recipe for " . $recipe . '!';
-// 	$msg = '<span><strong>Less sugar, more flavour.</strong></span>';
-// 	$msg .= $break;
-// 	$msg .= '<span>Are you up for something crisp & zesty? Use the recipe attached to make yourself a glass of <strong>' . $recipe . '</strong>.</span>';
-// 	$msg .= $break;
-// 	$msg .= '<span>This drink and our other unique concoctions are made from pre-packaged, lower-sugar drinks and fresh ingredients like fruits and herbs. For a full-flavoured experience, choose Healthier Choice Symbol (HCS) products when you’re recreating our drinks or mixing your own at home.</span>';
-// 	$msg .= $break;
-// 	$msg .= '<span>For more recipes, visit <strong>gethealthy.sg</strong>.</span>';
-// 	$msg .= '<br><br><br>';
-// 	// signature
-// 	$msg .= 'The Health Promotion Board';
-//
-// 	return email($email, $subject, $msg, $headers, $attachment);
-// }
+function send_email($email) {
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	// $attachment = array(WP_CONTENT_DIR . '/uploads/2018/03/' . $attachmentName . '-recipe.pdf');
 
+	$metallicstar = get_template_directory_uri() . '/assets/images/5-Star_Metallic.png';
+	$break = '<br><br>';
+
+	$subject = "Greetings from EVA Air";
+
+	$msg = '<span style="color: red">Greetings from EVA Air,</span>';
+	$msg .= $break;
+	$msg .= '<span>You are a step closer to winning your dream vacation!</span>';
+	$msg .= $break;
+	$msg .= '<span>Upload the photo on your FB or Instagram account and hashtag #EVAAir to complete your participation.</span>';
+	$msg .= $break;
+	$msg .= '<span>We will announce the lucky winners on our official Facebook account, <a href="https://www.facebook.com/evaairwayscorp.sg">www.facebook.com/evaairwayscorp.sg</a> on 21st August.</span>';
+	$msg .= $break;
+	$msg .= '<span>Stay tuned and good Luck!</span>';
+	$msg .= '<br><br><br>';
+	// sign off images
+	// $msg .= '<img src="' . $metallicstar . '" class="logo" />';
+
+	return email($email, $subject, $msg, $headers); // can add $attachment as last param
+}
 
 
 add_action( 'wp_ajax_nopriv_update_count', 'update_count' );
