@@ -109,7 +109,7 @@ $(() => {
   let submitbtn = $('.submit', modal),
   close = $('.close', modal),
   thanks = $('#thanks'),
-  startagain = $('button', thanks),
+  startagain = $('.btn', thanks),
   emailInput = document.querySelector('#write');
 
   // init tippy

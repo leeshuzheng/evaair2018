@@ -76,6 +76,50 @@ body {
   font-family: $cooperBlack;
 }
 
+.btn {
+  border: 3px solid $black;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  font-family: $cooperBlack;
+
+  span {
+    position: relative;
+    z-index: 2;
+    color: $white;
+    font-weight: normal;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
 #start {
   background-image: url('../images/bg_start.png');
   text-align: center;

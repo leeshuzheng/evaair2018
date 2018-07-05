@@ -4,8 +4,10 @@ mixin keyboard(spec)
 
   #container
     input#write(type="email", placeholder="your e-mail", title="Please enter a valid email address")
-    button(class="close") CANCEL
-    button(type="submit" class="submit") SUBMIT
+    .close.btn 
+      span CANCEL
+    .submit.btn 
+      span SUBMIT
     |             
     ul#keyboard
       li.symbol

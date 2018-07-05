@@ -67,22 +67,21 @@
     }
   }
 
-  .each {
-    border: 3px solid $black;
-    border-radius: 10px;
-    padding: 10px;
-    display: inline-block;
-
+  .retake {
     &:before {
-      height: 50%;
-      width: 100%;
-      display: block;
+      background-color: $crimson;
     }
-
     &:after {
-      height: 50%;
-      width: 100%;
-      display: block;
+      background-color: $darkRed;
+    }
+  }
+
+  .confirm {
+    &:before {
+      background-color: $yellowgreen;
+    }
+    &:after {
+      background-color: $olive;
     }
   }
 
