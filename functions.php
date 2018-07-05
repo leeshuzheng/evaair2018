@@ -793,7 +793,8 @@ function show_user_image() {
 }
 
 function display_user_image() {
+	global $post;
 	$imageInfo = get_post_meta($post->ID, 'image_src');
-	$imageHolder = '<img src="' . $imageInfo . '" />';
+	$imageHolder = '<img style="width: 400px" src="' . $imageInfo[0] . '" />';
 	echo $imageHolder;
 }
