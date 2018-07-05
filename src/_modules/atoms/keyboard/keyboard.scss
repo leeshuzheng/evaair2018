@@ -1,5 +1,6 @@
 // keyboard styles
-$keySize: 71px;
+$keyWidth: 67px;
+$keyHeight: $keyWidth * 1.25;
 
 .tippy-tooltip {
   font-size: 15pt;
@@ -31,8 +32,6 @@ $keySize: 71px;
       }
     }
   }
-
-
 }
 
 #write {
@@ -47,8 +46,10 @@ $keySize: 71px;
   border: 0;
   text-align: center;
   border-radius: 25px;
+  outline: none;
+
   &::placeholder {
-    color: #000;
+    color: $lightGrey;
   }
 }
 
@@ -60,23 +61,26 @@ $keySize: 71px;
 
   li {
     float: left;
-    width: $keySize;
-    height: $keySize;
-    line-height: $keySize;
+    width: $keyWidth;
+    height: $keyHeight;
+    line-height: $keyHeight;
     text-align: center;
     background: $grey;
     color: $white;
     border: 1px solid $darkGrey;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin: 2px;
+    font-size: 28pt;
   }
+
   .return {
     width: 77px;
   }
   .left-shift {
-    width: $keySize * 2;
+    width: $keyWidth * 2;
   }
   .com {
-    width: $keySize * 2;
+    width: $keyWidth * 2;
   }
   .darkGrey {
     background-color: $darkGrey;

@@ -19,15 +19,14 @@ $(() => {
 
   var mywebcam = {};
 
-  mywebcam.width = 400;
-  mywebcam.height = 400 * 1.778;
+  mywebcam.width = 470; // to match $screenshotwidth
+  mywebcam.height = mywebcam.width * 1.778;
 
   Webcam.set({
     image_format: 'jpeg',
     dest_width: mywebcam.width,
     dest_height: mywebcam.height
   });
-
 
 
   new Keyboard();
@@ -104,7 +103,7 @@ $(() => {
     timer = setInterval(function() {
       handleTimer(count);
     }, 1000);
-  })
+  });
 
   let submitbtn = $('.submit', modal),
   close = $('.close', modal),
@@ -181,41 +180,48 @@ $(() => {
     start.addClass('show');
     setcount();
     holdscreenshot.html(webcamimg); // empty holdscreenshot and webcamimg divs
-    // formData = new FormData(); // reset formData
   }
 
   function take_snapshot() {
     Webcam.snap(function(data_uri) {
       document.getElementById('webcamimg').innerHTML = '<img src="'+data_uri+'"/>';
-    });
-
-    html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
-      let img = convertCanvasToImage(canvas);
-      img.className = 'heeey';
-      $('#webcamimg')[0].appendChild(img);
+      // webcam image goes into #webcamimg div
     });
   }
 
+  // html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
+  //   let img = convertCanvasToImage(canvas);
+  //   img.className = 'heeey';
+  //   $('#webcamimg')[0].appendChild(img);
+  // });
+
   function endCountdown() {
+
+    // 1) take picture in webcam
     take_snapshot();
 
-    // play sound
+    // 2) get city-appropriate frame and append that to .holdscreenshot div
+    let frame = new Image(),
+      source = `../images/frames/frame_${currentcity}`;
+
+    frame.src = source;
+    // each frame image is given a src based on current city, and a class of frame for styling
+    holdscreenshot.append(frame);
+
+    // 3) play sound
     audio[0].play();
 
-    // wait for 1.5 seconds then change
+    // 4) wait for 1.5 seconds then change
     setTimeout(function() {
-      // 1) hide container for snap countries
+
       takepicturecontainer.removeClass('show');
 
       addstickerpage.addClass('show');
 
       stickers.removeClass('show');
-
       $(`.sticker-${currentcity}`).addClass('show');
 
-      let frame = $('.snap.show').clone();
-      holdscreenshot.append(frame);
-
+      // 5) handle clicking and dragging stickers
       let stickerimage = $('.sticker').find('img');
 
       stickerimage.on('click touchstart', function() {
@@ -226,6 +232,7 @@ $(() => {
 
         $('.dragme').draggable();
       });
+
     }, 1500);
   }
 

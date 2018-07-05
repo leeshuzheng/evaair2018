@@ -679,6 +679,7 @@ function email($to, $sub, $msg, $header)
 // add_action( 'wp_ajax_send_email', 'send_email' );
 
 function send_email($email) {
+	// $email = isset($_POST['email']) ? sanitize_text_field($_POST['email']) : ""; // uncomment next time??
 	$headers = array('Content-Type: text/html; charset=UTF-8');
 	// $attachment = array(WP_CONTENT_DIR . '/uploads/2018/03/' . $attachmentName . '-recipe.pdf');
 
@@ -769,10 +770,15 @@ function update_user_submissions() {
 			'post_status' => 'publish',
 			'post_type' => 'user_submissions',
 		);
+
 		$newPost = wp_insert_post($newVisitorCount);
 
 		update_field('field_5b37dc6741f00', $email, $newPost);
 		// update_field('field_5b37dc6a41f01', $image, $newPost);
+
+		if ( ! add_post_meta( $newPost, 'image_src', $image, true ) ) {  // if no post meta exists
+			update_post_meta( $newPost, 'image_src', $image ); // create new post meta for meta key named 'image_src'
+		}
 
 		echo wp_json_encode(array('success' => 1, 'id'=>$newPost));
 	}
@@ -787,7 +793,7 @@ function show_user_image() {
 }
 
 function display_user_image() {
-	$imageInfo = $image;
+	$imageInfo = get_post_meta($post->ID, 'image_src');
 	$imageHolder = '<img src="' . $imageInfo . '" />';
 	echo $imageHolder;
 }
