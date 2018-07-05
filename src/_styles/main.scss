@@ -287,6 +287,7 @@ body {
 
 #thanks {
   background-image: url('../images/bg_common.png');
+  text-align: center;
 
   h1 {
     font-family: $cooperBlack;
@@ -335,6 +336,21 @@ body {
     position: absolute;
     right: 130px;
     bottom: 611px;
+  }
+
+  .btn {
+    &:before {
+      background-color: $crimson;
+    }
+    &:after {
+      background-color: $darkRed;
+    }
+    span {
+      color: #fff;
+      font-weight: normal;
+      font-size: 20pt;
+      margin-top: 0;
+    }
   }
 }
 
