@@ -49,7 +49,7 @@ $(() => {
   snap = $('.snap'),
   takepicturecontainer = $('.takepicturecontainer'),
   timer,
-  countdown = $('#countdown'),
+  countdown = $('.countdown'),
   audio = $('audio');
 
 
@@ -129,8 +129,17 @@ $(() => {
     let emailValue = emailInput.value;
 
     if (isValidEmail(emailValue)) {
-      addstickerpage.removeClass('show');
-      thanks.addClass('show');
+
+      html2canvas(document.querySelector('.holdscreenshot')).then(canvas => {
+        let base64string = getBase64FromCanvas(canvas);
+
+        console.log(`base64string is ${base64string}`);
+      });
+
+      setTimeout(function() {
+        addstickerpage.removeClass('show');
+        thanks.addClass('show');
+      }, 1500);
 
       // hide tippy
       emailInput._tippy.hide();
@@ -185,15 +194,8 @@ $(() => {
   function take_snapshot() {
     Webcam.snap(function(data_uri) {
       document.getElementById('webcamimg').innerHTML = '<img src="'+data_uri+'"/>';
-      // webcam image goes into #webcamimg div
     });
   }
-
-  // html2canvas(document.querySelector('.takepicturecontainer')).then(canvas => {
-  //   let img = convertCanvasToImage(canvas);
-  //   img.className = 'heeey';
-  //   $('#webcamimg')[0].appendChild(img);
-  // });
 
   function endCountdown() {
 
@@ -202,7 +204,7 @@ $(() => {
 
     // 2) get city-appropriate frame and append that to .holdscreenshot div
     let frame = new Image(),
-      source = `../images/frames/frame_${currentcity}`;
+    source = `../images/frames/frame_${currentcity}.png`;
 
     frame.src = source;
     // each frame image is given a src based on current city, and a class of frame for styling
@@ -239,48 +241,16 @@ $(() => {
   function handleTimer() {
     if(count === 0) {
       clearInterval(timer);
+      countdown.html('');
       endCountdown();
     } else {
-      console.log(`count is ${count}`);
       countdown.html(count);
       count--;
     }
   }
 
-  function base64ToBlob(base64, mime) {
-    mime = mime || '';
-    var sliceSize = 1024;
-    var byteChars = window.atob(base64);
-    var byteArrays = [];
-
-    for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
-      var slice = byteChars.slice(offset, offset + sliceSize);
-
-      var byteNumbers = new Array(slice.length);
-      for (var i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      var byteArray = new Uint8Array(byteNumbers);
-
-      byteArrays.push(byteArray);
-    }
-
-    return new Blob(byteArrays, {type: mime});
-  }
-
-  function convertCanvasToImage(canvas) {
-    var image = new Image();
+  function getBase64FromCanvas(canvas) {
     var base64 = canvas.toDataURL('image/png');
-
-    image.src = base64;
-
-    // var base64ImageContent = base64.replace(/^data:image\/(png|jpg);base64,/, "");
-
-    // var blob = base64ToBlob(base64ImageContent, 'image/png');
-
-    // image.src = blob;
-
-    return image;
+    return base64;
   }
 });

@@ -72,6 +72,11 @@
     width: $screenshotwidth;
     height: $screenshotwidth * 1.778;
 
+    img {
+      height: 100%;
+      width: 100%;
+    }
+
     .dragme {
       max-width: 100px;
       top: 0;
