@@ -3,7 +3,9 @@ mixin keyboard(spec)
   - spec.__class = spec.__class || ''
 
   #container
-    input#write(type="email", placeholder="your e-mail", title="Please enter a valid email address")
+    #tooltip
+      span Please enter a valid email address
+    input#write(type="email", placeholder="your e-mail")
     .close.btn 
       span CANCEL
     .submit.btn 

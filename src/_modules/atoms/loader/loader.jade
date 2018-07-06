@@ -1,6 +1,7 @@
 mixin loader(spec)
   - spec = spec || {}
   - spec.__class = spec.__class || ''
+  - spec.showClass = spec.showClass || ''
 
-  .loader.page
+  .loader.page(class="#{spec.showClass}")
     img(src="../assets/oval.svg")

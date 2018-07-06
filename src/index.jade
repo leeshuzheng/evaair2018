@@ -91,6 +91,9 @@ block content
     img(class="toprightlogo" src="../images/logo.png")
     +takepicture()
     +camera()
+    +loader({
+      showClass: 'show'
+      })
     
   
   .page#addsticker
@@ -174,9 +177,8 @@ block content
     img(id="girlright" src="../images/girl_right.png")
       
       
-      
-    .btn 
-      span START AGAIN
+    #takeanother
+      img(src="../images/take_another.png")
     
     
   audio

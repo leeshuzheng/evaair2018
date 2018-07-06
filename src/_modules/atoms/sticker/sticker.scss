@@ -46,6 +46,230 @@
       img {
         display: block;
         width: 100%;
+        transform: scale(1.5);
+        position: relative;
+
+        &.left {
+          color: green;
+        }
+        &.right {
+          color: red;
+        }
+      }
+    }
+
+    &.sticker-taipei {
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      img {
+        transform: scale(.85);
+
+        &.left {
+          left: 6px;
+        }
+        &.right {
+          right: 6px;
+        }
+      }
+
+      .image5 {
+        top: -45px;
+      }
+      .image {
+        top: -5px;
+      }
+      .image2 {
+        top: -28px;
+      }
+      .image3 {
+        top: -45px;
+      }
+      .image4 {
+        top: -65px;
+      }
+      .image6 {
+        top: -48px;
+      }
+      .image7 {
+        top: -55px;
+      }
+      .image8 {
+        top: -68px;
+      }
+    }
+
+    &.sticker-losangeles {
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      img {
+        transform: scale(1.3);
+
+        &.left {
+          left: 0px;
+        }
+        &.right {
+          right: 6px;
+        }
+      }
+
+      .image5 {
+        top: 15px;
+        transform: scale(1.2);
+      }
+      .image1 {
+        top: 18px;
+      }
+      .image2 {
+        top: 39px;
+      }
+      .image3 {
+        top: 70px;
+      }
+      .image4 {
+        top: 75px;
+      }
+      .image6 {
+        top: 11px;
+      }
+      .image7 {
+        top: 11px;
+      }
+      .image8 {
+        top: 33px;
+      }
+    }
+
+    &.sticker-newyork {
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      img {
+        transform: scale(1.4);
+
+        &.left {
+          left: 0px;
+        }
+        &.right {
+          right: 6px;
+        }
+      }
+
+      .image5 {
+        top: 35px;
+      }
+      .image1 {
+        top: -5px;
+      }
+      .image2 {
+        top: 39px;
+      }
+      .image3 {
+        top: 70px;
+      }
+      .image4 {
+        top: 75px;
+      }
+      .image6 {
+        top: 11px;
+      }
+      .image7 {
+        top: 5px;
+      }
+      .image8 {
+        top: 43px;
+      }
+    }
+
+    &.sticker-sanfrancisco {
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      img {
+        transform: scale(1.3);
+
+        &.left {
+          left: 0px;
+        }
+        &.right {
+          right: 6px;
+        }
+      }
+
+      .image5 {
+        top: 25px;
+    transform: scale(1.4);
+      }
+      .image1 {
+        top: 13px;
+    left: 9px !important;
+      }
+      .image2 {
+        top: 27px;
+      }
+      .image3 {
+        top: 10px;
+      }
+      .image4 {
+        top: 40px;
+      }
+      .image6 {
+        top: -5px;
+      }
+      .image7 {
+        top: -12px;
+      }
+      .image8 {
+        top: 36px;
+      }
+    }
+
+    &.sticker-vancouver {
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      img {
+        transform: scale(1.3);
+
+        &.left {
+          left: 0px;
+        }
+        &.right {
+          right: 6px;
+        }
+      }
+
+      .image5 {
+        top: 32px;
+    transform: scale(1.4);
+      }
+      .image1 {
+        top: -60px;
+    left: 9px !important;
+      }
+      .image2 {
+        top: -52px;
+      }
+      .image3 {
+        top: -45px;
+      }
+      .image4 {
+        top: -10px;
+      }
+      .image6 {
+        top: -5px;
+      }
+      .image7 {
+        top: -45px;
+      }
+      .image8 {
+        top: -24px;
       }
     }
   }
@@ -79,7 +303,7 @@
     }
 
     .dragme {
-      max-width: 100px;
+      max-width: 130px;
       top: 0;
       left: 0;
       height: auto;

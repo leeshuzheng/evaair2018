@@ -104,8 +104,8 @@ body {
     height: 50%;
     width: 100%;
     z-index: 1;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   &:after {
@@ -117,8 +117,8 @@ body {
     height: 50%;
     width: 100%;
     z-index: 1;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 }
 
@@ -339,26 +339,31 @@ body {
     bottom: 611px;
   }
 
-  .btn {
-    &:before {
-      background-color: $crimson;
-    }
-    &:after {
-      background-color: $darkRed;
-    }
-    span {
-      color: #fff;
-      font-weight: normal;
-      font-size: 20pt;
-      margin-top: 0;
+  #takeanother {
+    cursor: pointer;
+    margin-top: 120px;
+
+    img {
+      max-width: 500px;
     }
   }
 }
 
 #webcamimg {
   transform: rotate(90deg);
+  height: 462px;
+    width: 827px;
+    position: absolute;
+    top: 183px;
+    left: -183px;
   img {
     height: $screenshotwidth;
     width: auto;
+  }
+}
+
+.takepicturecontainer {
+  .loader {
+    z-index: 1;
   }
 }

@@ -1,3 +1,5 @@
+include ../loader/loader
+
 mixin snap(spec)
   - spec = spec || {}
   - spec.__class = spec.__class || ''
@@ -11,6 +13,8 @@ mixin snap(spec)
     h1(class="hashtag cooperBlack")
       span #
       | EVAAIR
-    .plane
     
+    img(class="lookhere" src="../images/look_here.png")
+    img(class="arrowright" src="../images/arrow_right.png")
     .countdown
+    

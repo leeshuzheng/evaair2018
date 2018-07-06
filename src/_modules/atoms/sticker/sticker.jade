@@ -12,7 +12,7 @@ mixin sticker(spec)
     
     .column
       each leftimg in spec.leftcolumn
-        img(src="#{imagepath}/#{city}/#{leftimg}.png")
+        img(class="image#{leftimg} left" src="#{imagepath}/#{city}/#{leftimg}.png")
     .column
       each rightimg in spec.rightcolumn
-        img(src="#{imagepath}/#{city}/#{rightimg}.png")
+        img(class="image#{rightimg} right" src="#{imagepath}/#{city}/#{rightimg}.png")

@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   display: none;
   background-size: contain;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
 
   &.show {
@@ -51,8 +51,24 @@
   }
 
   .countdown {
-    font-size: 350pt;
+    font-size: 300pt;
     opacity: .3;
+    font-family: $cooperBlack;
+    color: $numberGrey;
+  }
+
+  .lookhere {
+    width: 300px;
+    position: absolute;
+    right: 55px;
+    top: 35%;
+  }
+
+  .arrowright {
+    position: absolute;
+    width: 150px;
+    right: 120px;
+    top: 39%;
   }
 }
 
