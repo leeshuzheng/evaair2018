@@ -41,7 +41,10 @@ $(() => {
     close = $('.close', modal),
     thanks = $('#thanks'),
     startagain = $('.btn', thanks),
-    emailInput = document.querySelector('#write');
+    emailInput = document.querySelector('#write'),
+    currentPanel = $('#currentPanel'),
+    idleTimer = null,
+    idleWait = 30000;
 
   mywebcam.width = 470; // to match $screenshotwidth
   mywebcam.height = mywebcam.width * 1.778;
@@ -52,18 +55,28 @@ $(() => {
     dest_height: mywebcam.height
   });
 
-
   new Keyboard();
   new Sticker();
 
   setcount();
 
+  $('*').bind('click touchstart', function (e) {
+    clearTimeout(idleTimer);
+
+    idleTimer = setTimeout(function () {
+      sendEvent('Idle', idleWait/1000 + ' Seconds Idle');
+      reset();
+    }, idleWait);
+  });
+
   start.on('click touchstart', function() {
+    resetIdle(30000);
     start.removeClass('show');
     select.addClass('show');
   });
 
   selectcity.on('click touchstart', function() {
+    resetIdle(30000);
     // hide select page
     select.removeClass('show');
 
@@ -88,12 +101,29 @@ $(() => {
     }, 1000);
   });
 
+  // init tippy
+  tippy(emailInput, {
+    arrow: true,
+    trigger: 'manual'
+  });
+
+  close.on('click touchstart', function() {
+    resetIdle(30000);
+    modal.removeClass('is-active');
+  });
+
+  $('.modal-background').on('click touchstart', function() {
+    resetIdle(30000);
+    modal.removeClass('is-active');
+  });
 
   confirm.on('click touchstart', function() {
+    resetIdle(30000);
     modal.addClass('is-active');
   });
 
   retake.on('click touchstart', function() {
+    resetIdle(330000);
     addstickerpage.removeClass('show');
     takepicturecontainer.addClass('show');
 
@@ -107,21 +137,8 @@ $(() => {
     }, 1000);
   });
 
-  // init tippy
-  tippy(emailInput, {
-    arrow: true,
-    trigger: 'manual'
-  });
-
-  close.on('click touchstart', function() {
-    modal.removeClass('is-active');
-  });
-
-  $('.modal-background').on('click touchstart', function() {
-    $('.modal').removeClass('is-active');
-  });
-
   submitbtn.on('click touchstart', function() {
+    resetIdle(30000);
     let emailValue = emailInput.value;
 
     if (isValidEmail(emailValue)) {
@@ -129,7 +146,24 @@ $(() => {
       html2canvas(document.querySelector('.holdscreenshot')).then(canvas => {
         let base64string = getBase64FromCanvas(canvas);
 
-        console.log(`base64string is ${base64string}`);
+        // $.ajax({
+        //   type: 'POST',
+        //   dataType: 'text',
+        //   url: evaair2018.ajaxurl,
+        //   data: {
+        //     'action': 'update_user_submissions',
+        //     'panel': currentPanel,
+        //     'email': emailValue,
+        //     'image': base64string
+        //   },
+        //   success: function (data) {
+        //     console.log(data);
+        //   },
+        //   error: function(e) {
+        //     console.log(e);
+        //   }
+        // });
+
       });
 
       showLoader();
@@ -143,19 +177,6 @@ $(() => {
       // hide tippy
       emailInput._tippy.hide();
 
-      // $.ajax({
-      //   type: 'POST',
-      //   // url: evaair2018.ajaxurl,
-      //   data: {
-      //     'action' : 'update_user_submissions',
-      //   },
-      //   success: function (data) {
-      //     console.log(data);
-      //   },
-      //   error: function(e) {
-      // console.log(e);
-      //   }
-      // });
     } else {
       // show tippy
       console.log('show tippy');
@@ -168,6 +189,54 @@ $(() => {
   });
 
   // helper functions
+
+  function resetIdle(seconds) {
+    idleWait = seconds;
+  }
+
+  function sendEvent(eventName, value) {
+    let currentFrame = getCurrentFrame(),
+      currentPanel;
+
+    if (!currentPanel) {
+      currentPanel = $('#currentPanel').val();
+    }
+
+    if (!value) {
+      value = '';
+    }
+
+    console.log('Sending Analytics ' + currentFrame + ' - ' + value);
+
+    // $.ajax({
+    //   type: 'POST',
+    //   dataType: 'text',
+    //   url: evaair2018.ajaxurl,
+    //   data: {
+    //     'action' : 'update_count',
+    //     'label': eventName,
+    //     'frame': currentFrame,
+    //     'panel': currentPanel,
+    //     'add_option' : value
+    //   },
+    //   success: function (data) {
+    //     console.log(data);
+    //   },
+    //   error: function(e) {
+		// 		console.log(e);
+    //   }
+    // });
+  };
+
+
+  function getCurrentFrame(){
+    let currentFrame = $('.page:visible'),
+      currentFrameDisplay = '';
+    if (currentFrame) {
+      currentFrameDisplay = currentFrame.attr('id');
+    }
+    return currentFrameDisplay;
+  };
 
   function showLoader() {
     loader.addClass('show');
@@ -196,6 +265,8 @@ $(() => {
     start.addClass('show');
     setcount();
     holdscreenshot.html(webcamimg); // empty holdscreenshot and webcamimg divs
+    $('body').trigger('click');
+    resetIdle(30000);
   }
 
   function take_snapshot() {
