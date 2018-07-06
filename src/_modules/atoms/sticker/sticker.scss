@@ -58,6 +58,7 @@
     .btn {
       span {
         font-size: 20pt;
+        line-height: 20pt;
       }
     }
   }
@@ -81,6 +82,7 @@
       max-width: 100px;
       top: 0;
       left: 0;
+      height: auto;
       z-index: 2;
     }
 

@@ -774,11 +774,13 @@ function update_user_submissions() {
 		$newPost = wp_insert_post($newVisitorCount);
 
 		update_field('field_5b37dc6741f00', $email, $newPost);
-		// update_field('field_5b37dc6a41f01', $image, $newPost);
 
 		if ( ! add_post_meta( $newPost, 'image_src', $image, true ) ) {  // if no post meta exists
 			update_post_meta( $newPost, 'image_src', $image ); // create new post meta for meta key named 'image_src'
 		}
+
+		// send email
+		send_email($email);
 
 		echo wp_json_encode(array('success' => 1, 'id'=>$newPost));
 	}
