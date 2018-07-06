@@ -3,12 +3,14 @@ extends _layouts/base
 include _modules/atoms/snap/snap
 include _modules/atoms/keyboard/keyboard
 include _modules/atoms/sticker/sticker
-include _modules/molecules/camera/camera
+include _modules/atoms/loader/loader
 
+include _modules/molecules/camera/camera
 include _modules/molecules/takepicture/takepicture
 
 block content
 
+  +loader()
   .page.show#start
     img(id="logo" src="../images/logo.png")
     img(id="snaptowin" src="../images/camera.png")
@@ -64,7 +66,7 @@ block content
           | #EVAAIR
         
     #tnc
-      * Terms and conditions apply. Refer to our Facebook page.
+      | * Terms and conditions apply. Refer to our Facebook page.
     
   .page#select
     img(class="toprightlogo" src="../images/logo.png")

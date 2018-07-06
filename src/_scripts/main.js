@@ -17,7 +17,31 @@ $(() => {
   // change to false when deploying to production
   window.production = true;
 
-  var mywebcam = {};
+  let mywebcam = {},
+    start = $('#start'),
+    select = $('#select'),
+    currentcity = '',
+    allpages = $('.page'),
+    count,
+    loader = $('.loader'),
+    selectcity = $('a', select),
+    snap = $('.snap'),
+    takepicturecontainer = $('.takepicturecontainer'),
+    timer,
+    countdown = $('.countdown'),
+    audio = $('audio'),
+    stickers = $('.sticker'),
+    addstickerpage = $('#addsticker'),
+    holdscreenshot = $('.holdscreenshot'),
+    retake = $('.retake', addstickerpage),
+    confirm = $('.confirm', addstickerpage),
+    enteremailpage = $('#enterEmail'),
+    modal = $('.modal', addstickerpage),
+    submitbtn = $('.submit', modal),
+    close = $('.close', modal),
+    thanks = $('#thanks'),
+    startagain = $('.btn', thanks),
+    emailInput = document.querySelector('#write');
 
   mywebcam.width = 470; // to match $screenshotwidth
   mywebcam.height = mywebcam.width * 1.778;
@@ -32,26 +56,12 @@ $(() => {
   new Keyboard();
   new Sticker();
 
-  let start = $('#start'),
-  select = $('#select'),
-  currentcity = '',
-  allpages = $('.page'),
-  count;
-
   setcount();
 
   start.on('click touchstart', function() {
     start.removeClass('show');
     select.addClass('show');
   });
-
-  let selectcity = $('a', select),
-  snap = $('.snap'),
-  takepicturecontainer = $('.takepicturecontainer'),
-  timer,
-  countdown = $('.countdown'),
-  audio = $('audio');
-
 
   selectcity.on('click touchstart', function() {
     // hide select page
@@ -79,14 +89,6 @@ $(() => {
   });
 
 
-  let stickers = $('.sticker'),
-  addstickerpage = $('#addsticker'),
-  holdscreenshot = $('.holdscreenshot'),
-  retake = $('.retake', addstickerpage),
-  confirm = $('.confirm', addstickerpage),
-  enteremailpage = $('#enterEmail'),
-  modal = $('.modal', addstickerpage);
-
   confirm.on('click touchstart', function() {
     modal.addClass('is-active');
   });
@@ -104,12 +106,6 @@ $(() => {
       handleTimer(count);
     }, 1000);
   });
-
-  let submitbtn = $('.submit', modal),
-  close = $('.close', modal),
-  thanks = $('#thanks'),
-  startagain = $('.btn', thanks),
-  emailInput = document.querySelector('#write');
 
   // init tippy
   tippy(emailInput, {
@@ -136,10 +132,13 @@ $(() => {
         console.log(`base64string is ${base64string}`);
       });
 
+      showLoader();
+
       setTimeout(function() {
         addstickerpage.removeClass('show');
         thanks.addClass('show');
-      }, 1500);
+        hideLoader();
+      }, 1800);
 
       // hide tippy
       emailInput._tippy.hide();
@@ -169,6 +168,14 @@ $(() => {
   });
 
   // helper functions
+
+  function showLoader() {
+    loader.addClass('show');
+  }
+
+  function hideLoader() {
+    loader.removeClass('show');
+  }
 
   function isValidEmail(e) {
     var filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
@@ -213,6 +220,8 @@ $(() => {
     // 3) play sound
     audio[0].play();
 
+    showLoader();
+
     // 4) wait for 1.5 seconds then change
     setTimeout(function() {
 
@@ -235,7 +244,9 @@ $(() => {
         $('.dragme').draggable();
       });
 
-    }, 1500);
+      hideLoader();
+
+    }, 1800);
   }
 
   function handleTimer() {
