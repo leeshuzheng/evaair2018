@@ -44,11 +44,8 @@ $(() => {
     emailInput = document.querySelector('#write'),
     currentPanel = $('#currentPanel'),
     idleTimer = null,
-    idleWait = 120000000,
+    idleWait = 30000,
     tooltip = $('#tooltip');
-
-
-
 
   new Keyboard();
   new Sticker();
@@ -65,13 +62,13 @@ $(() => {
   });
 
   start.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     start.removeClass('show');
     select.addClass('show');
   });
 
   selectcity.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     // hide select page
     select.removeClass('show');
 
@@ -96,32 +93,26 @@ $(() => {
     }, 1000);
   });
 
-  // init tippy
-  // tippy(emailInput, {
-  //   arrow: true,
-  //   trigger: 'manual'
-  // });
-
   close.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     tooltip.removeClass('show');
     modal.removeClass('is-active');
   });
 
   $('.modal-background').on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     tooltip.removeClass('show');
     modal.removeClass('is-active');
   });
 
   confirm.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     modal.addClass('is-active');
     emailInput.value = '';
   });
 
   retake.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     tooltip.removeClass('show');
     addstickerpage.removeClass('show');
     takepicturecontainer.addClass('show');
@@ -137,7 +128,7 @@ $(() => {
   });
 
   submitbtn.on('click touchstart', function() {
-    resetIdle(120000000);
+    resetIdle(30000);
     let emailValue = emailInput.value;
 
     if (isValidEmail(emailValue)) {
@@ -185,11 +176,22 @@ $(() => {
     }
   });
 
+  // handle clicking and dragging stickers
+  $('.sticker img').on('click touchstart', function() {
+    let clone = $(this).clone();
+    console.log($(this));
+    clone.addClass('dragme').css({
+      'position': 'absolute'
+    }).appendTo('.holdscreenshot');
+
+    $('.dragme').draggable();
+  });
+
   startagain.on('click touchstart', function() {
     reset();
   });
 
-  // helper functions
+  // HELPER FUNCTIONS
 
   function resetIdle(seconds) {
     idleWait = seconds;
@@ -267,7 +269,7 @@ $(() => {
     setcount();
     holdscreenshot.html(webcamimg); // empty holdscreenshot and webcamimg divs
     $('body').trigger('click');
-    resetIdle(120000000);
+    resetIdle(30000);
     tooltip.removeClass('show');
   }
 
@@ -309,18 +311,6 @@ $(() => {
 
       stickers.removeClass('show');
       $(`.sticker-${currentcity}`).addClass('show');
-
-      // 5) handle clicking and dragging stickers
-      let stickerimage = $('.sticker').find('img');
-
-      stickerimage.on('click touchstart', function() {
-        let clone = $(this).clone();
-        clone.addClass('dragme').css({
-          'position': 'absolute'
-        }).appendTo('.holdscreenshot');
-
-        $('.dragme').draggable();
-      });
 
       hideLoader();
 

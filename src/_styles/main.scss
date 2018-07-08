@@ -32,7 +32,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  overflow: scroll;
+  overflow: hidden;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -341,7 +341,7 @@ body {
 
   #takeanother {
     cursor: pointer;
-    margin-top: 120px;
+    margin-top: 65px;
 
     img {
       max-width: 500px;
