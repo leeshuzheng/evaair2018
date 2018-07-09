@@ -44,7 +44,7 @@ $(() => {
     emailInput = document.querySelector('#write'),
     currentPanel = $('#currentPanel'),
     idleTimer = null,
-    idleWait = 30000,
+    idleWait = 300000000,
     tooltip = $('#tooltip');
 
   new Keyboard();
@@ -62,13 +62,13 @@ $(() => {
   });
 
   start.on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     start.removeClass('show');
     select.addClass('show');
   });
 
   selectcity.on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     // hide select page
     select.removeClass('show');
 
@@ -94,25 +94,19 @@ $(() => {
   });
 
   close.on('click touchstart', function() {
-    resetIdle(30000);
-    tooltip.removeClass('show');
-    modal.removeClass('is-active');
-  });
-
-  $('.modal-background').on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     tooltip.removeClass('show');
     modal.removeClass('is-active');
   });
 
   confirm.on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     modal.addClass('is-active');
     emailInput.value = '';
   });
 
   retake.on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     tooltip.removeClass('show');
     addstickerpage.removeClass('show');
     takepicturecontainer.addClass('show');
@@ -128,7 +122,7 @@ $(() => {
   });
 
   submitbtn.on('click touchstart', function() {
-    resetIdle(30000);
+    resetIdle(300000000);
     let emailValue = emailInput.value;
 
     if (isValidEmail(emailValue)) {
@@ -269,7 +263,7 @@ $(() => {
     setcount();
     holdscreenshot.html(webcamimg); // empty holdscreenshot and webcamimg divs
     $('body').trigger('click');
-    resetIdle(30000);
+    resetIdle(300000000);
     tooltip.removeClass('show');
   }
 

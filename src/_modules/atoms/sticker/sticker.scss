@@ -353,7 +353,18 @@
 
     p {
       color: $white;
+      font-size: 15pt;
     }
   }
 
+  .modal-close {
+    z-index: 3;
+    max-width: none;
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    max-height: none;
+    top: 20px;
+    right: 20px;
+  }
 }
