@@ -171,15 +171,30 @@ $(() => {
   });
 
   // handle clicking and dragging stickers
-  $('.sticker img').on('click touchstart', function() {
-    let clone = $(this).clone();
-    console.log($(this));
-    clone.addClass('dragme').css({
-      'position': 'absolute'
-    }).appendTo('.holdscreenshot');
+  // $('.sticker img').on('click touchstart', function() {
+  //   let clone = $(this).clone();
+  //   console.log($(this));
+  //   clone.addClass('dragme').css({
+  //     'position': 'absolute'
+  //   }).appendTo('.holdscreenshot');
+  //
+  //   $('.dragme').draggable();
+  // });
 
-    $('.dragme').draggable();
-  });
+  $('.sticker img').on('click', function(e){
+    var $link = $(e.target);
+    e.preventDefault();
+    if(!$link.data('lockedAt') || +new Date() - $link.data('lockedAt') > 400) {
+      let clone = $(this).clone();
+      console.log($(this));
+      clone.addClass('dragme').css({
+        'position': 'absolute'
+      }).appendTo('.holdscreenshot');
+
+      $('.dragme').draggable();
+    }
+    $link.data('lockedAt', +new Date());
+});
 
   startagain.on('click touchstart', function() {
     reset();
