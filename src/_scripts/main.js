@@ -61,36 +61,45 @@ $(() => {
     }, idleWait);
   });
 
+  var canclick = false;
+
   start.on('click touchstart', function() {
     resetIdle(30000);
     start.removeClass('show');
     select.addClass('show');
+
+    setTimeout(function() {
+      canclick = true;
+    }, 50);
   });
 
   selectcity.on('click touchstart', function() {
-    resetIdle(30000);
-    // hide select page
-    select.removeClass('show');
 
-    // get name of city
-    let city = $(this).data('select');
+    if (canclick) {
+      resetIdle(30000);
+      // hide select page
+      select.removeClass('show');
 
-    // store name of city in global variable
-    currentcity = city;
+      // get name of city
+      let city = $(this).data('select');
 
-    // show city with camera
-    let citytoshow = $(`#${city}`);
+      // store name of city in global variable
+      currentcity = city;
 
-    takepicturecontainer.addClass('show');
-    citytoshow.addClass('show');
+      // show city with camera
+      let citytoshow = $(`#${city}`);
 
-    // show containers then attach camera
+      takepicturecontainer.addClass('show');
+      citytoshow.addClass('show');
 
-    Webcam.attach('#camera');
+      // show containers then attach camera
 
-    timer = setInterval(function() {
-      handleTimer(count);
-    }, 1000);
+      Webcam.attach('#camera');
+
+      timer = setInterval(function() {
+        handleTimer(count);
+      }, 1000);
+    }
   });
 
   close.on('click touchstart', function() {
@@ -169,17 +178,6 @@ $(() => {
       // emailInput._tippy.show();
     }
   });
-
-  // handle clicking and dragging stickers
-  // $('.sticker img').on('click touchstart', function() {
-  //   let clone = $(this).clone();
-  //   console.log($(this));
-  //   clone.addClass('dragme').css({
-  //     'position': 'absolute'
-  //   }).appendTo('.holdscreenshot');
-  //
-  //   $('.dragme').draggable();
-  // });
 
   $('.sticker img').on('click', function(e){
     var $link = $(e.target);

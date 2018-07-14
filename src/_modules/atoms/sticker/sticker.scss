@@ -8,7 +8,8 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 270px;
+    margin-top: 225px;
+    margin-bottom: .4em;
     font-size: $largetext * .95;
   }
 
@@ -277,7 +278,7 @@
   .buttons {
     position: absolute;
     right: 167px;
-    bottom: 450px;
+    bottom: 510px;
 
     .btn {
       span {
@@ -304,7 +305,7 @@
 
     .dragme {
       max-width: 130px;
-      top: 0;
+      top: 50%;
       left: 0;
       height: auto;
       z-index: 2;
